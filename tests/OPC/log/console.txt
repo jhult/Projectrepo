@@ -1,0 +1,21 @@
+This is System class!!!
+*-----Environment Used for testing------ *
+https://site.c9qaga.us.oracle.com/home
+
+
+Executing TestCase:-  C9_MYA_01_loginLogout_Test
+chrome
+BrowserName: chrome | Version: 39.0.2171.95 | Platform: XP
+no. of windows open  2
+New windows Pagetitle  Single Sign On - Login
+PageTitle:- Single Sign On - Login
+BrowserName: chrome | Version: 39.0.2171.95 | Platform: XP
+Header: -My Account
+Test Completed:-  C9_MYA_01_loginLogout_Test
+Inside tearDown
+
+===============================================
+TestNG Suite
+Total tests run: 1, Failures: 0, Skips: 0
+===============================================
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;C9_CloudUI_Create_Trial_DBService_SameSAIDA_Test.java&apos; to &apos;OPC/src/com.safc.cloudui&apos;&#x0D;&#x0A;- Original project: &apos;OPC&apos;&#x0D;&#x0A;- Destination element: &apos;OPC/src/com.safc.cloudui&apos;&#x0D;&#x0A;- Original element: &apos;com.safc.cloudui.C9_CloudUI_Create_Trial_DBService_SameSAIDA_Test.java&apos;" description="Copy compilation unit" destination="/src&lt;com.safc.cloudui" element1="/src&lt;com.safc.cloudui{C9_CloudUI_Create_Trial_DBService_SameSAIDA_Test.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1368002470215" units="1" version="1.0"/>
+</session>

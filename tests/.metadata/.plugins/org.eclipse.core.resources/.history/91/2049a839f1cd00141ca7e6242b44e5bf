@@ -1,0 +1,268 @@
+package com.qa141.cloudui;
+
+/*
+ * Verifying Home page opening or not
+ * Verifying all Header link
+ * Verifying Footer link
+ * 
+ */
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+import com.opc.common.Browser;
+import com.opc.locators.CloudHomePage;
+import com.opc.locators.CloudHomePage;
+import com.opc.test.*;
+import com.opc.util.Utility;
+
+public class C9_LandingPage_01_HeaderFooter_Test extends BaseTest {
+	
+	Select select;
+	
+	@Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+	 try{
+		 System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());  
+	     System.out.println(browserName);
+		  
+		   driver = Browser.browserToRun(driver1, browserName);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  
+		   driver.get(Config.APP_URL); 
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(10000);
+		   System.out.println("Step ----1 ");
+		   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   
+		   /*--------------------------------- All Landing Page Header related Test Scripts -----------------------------------------------------*/	
+		 
+		   /*----- CloudHomePage ------*/	
+		
+		   Utility.selectList(driver, "Home" , By.xpath("//ul[@class='opcNav']/li"));
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(10000); 
+		   System.out.println("Step ----2 ");
+		  				   
+		   // Home page verification	
+		    Assert.assertEquals(driver.findElement(CloudHomePage.HOME_LINK).getText(), "Home");
+		   
+ 	    /*----- Clicking Products & Services ------*/
+		    		    
+		    Utility.selectList(driver, "Products & Services" , By.xpath("//ul[@class='opcNav']/li"));
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(10000);
+		    Assert.assertEquals(driver.findElement(CloudHomePage.Home_Product_Services) .getText(), "Products & Services");
+		    System.out.println("Step ----4 ");
+		   
+		   /*----- Clicking Products & Services ------*/
+		    Assert.assertEquals(driver.findElement(CloudHomePage.Homeuct_Services_Engage_Customers).getText(), "Customer Experience"); 
+		    driver.findElement(CloudHomePage.Homeuct_Services_Engage_Customers).click();
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(10000);
+		    System.out.println("Step ----5 ");
+		 
+		    /*----- Resources --------------------*/
+		    Utility.selectList(driver, "Resources" , By.xpath("//ul[@class='opcNav']/li"));
+		    Assert.assertEquals(driver.findElement(CloudHomePage.Home_Resources).getText(), "Resources");
+		    driver.findElement(CloudHomePage.Home_Resources).click();
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(10000);
+		    System.out.println("Step ----6 ");
+		    
+		    /*----- Sign In --------------------*/
+		    Assert.assertEquals(driver.findElement(CloudHomePage.Home_sign_in).getText(), "Sign In");
+		    Utility.selectList(driver, "Sign In" , By.xpath("//ul[@class='opcNav']/li"));
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(10000);
+		    System.out.println("Step ----7 ");
+		   
+		    /*--------------------------------- All Landing Page Footer related Test Scripts -----------------------------------------------------*/	
+		    
+		    /*----- About Oracle --------------------*/
+		    
+		    Utility.selectList(driver, "About Oracle" , By.xpath("//div[@class='footerLeft columns']/ul/li"));
+		//    driver.findElement(CloudHomePage.Home_About_Oracle).click();
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(10000);
+		   		  
+		    /* ----- Navigating to New Window -------------------------------------------*/
+			Set allWindowHandles = driver.getWindowHandles();
+		    int win = allWindowHandles.size();
+			System.out.println("no. of windows open  "  + win);
+			Thread.sleep(20000);
+			driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			String window1 = (String) allWindowHandles.toArray()[1];
+			driver.switchTo().window(window1);	
+			System.out.println("yes");
+			driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+		    Thread.sleep(20000);
+		    System.out.println("yes1");
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Assert.assertEquals(driver.findElement(CloudHomePage.Home_About_Oracle1).getText(), "About Oracle");
+		    System.out.println("About Oracle.....1..........");
+		    driver.close();
+/*//		    perform assert action
+		    Assert.assertEquals(driver.findElement(CloudHomePage.Home_About_Oracle1).getText(), "About Oracle");
+		    driver.findElement(CloudHomePage.Home_About_Oracle1).click();
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(5000);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    System.out.println("About Oracle.....2..........");
+		    driver.close();*/
+		    
+//		    go back to main window
+		    driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(10000);
+		    
+		    /*----- Contact Us ------------------------------------------------------*/		
+		    
+            Utility.selectList(driver, "Contact Us" , By.xpath("//div[@class='footerLeft columns']/ul/li"));
+            Thread.sleep(10000);
+		    driver.findElement(CloudHomePage.Home_Contact_Us).click();
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(10000);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    System.out.println("Contact Us.....1..........");
+		    
+		    /* ----- Navigating to New Window -----*/
+			Set allWindowHandles1 = driver.getWindowHandles();
+		    int win1 = allWindowHandles1.size();
+			System.out.println("no. of windows open  "  + win1);
+			Thread.sleep(20000);
+			String window2 = (String) allWindowHandles1.toArray()[1];
+			driver.switchTo().window(window2);	
+			System.out.println("Yes");
+			driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.manage().window().maximize();
+		    Thread.sleep(25000);
+		    System.out.println("Yes1");
+		    Assert.assertEquals(driver.findElement(CloudHomePage.Home_Contact_us_txt).getText(), "About");
+		    System.out.println("Contact Us.....2..........");
+		    driver.close();
+		    
+		    // go back to main window
+		    driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    
+		    
+		    /*----- Legal Notices --------------------*/
+		    
+		    System.out.println("You are at legel notice");
+		    Utility.selectList(driver, "Legal Notices" , By.xpath("//div[@class='footerLeft columns']/ul/li"));
+		 //   driver.findElement(CloudHomePage.Home_Legal_Notices).click();
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(5000);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    
+		    /* ----- Navigating to New Window -----*/
+			Set allWindowHandles2 = driver.getWindowHandles();
+		    int win2 = allWindowHandles2.size();
+			System.out.println("no. of windows open  "  + win2);
+			Thread.sleep(10000);
+			driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			String window3 = (String) allWindowHandles2.toArray()[1];
+			driver.switchTo().window(window3);	
+			driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.manage().window().maximize();
+			System.out.println("You are at legel notice..............1");
+			Thread.sleep(5000);
+			Assert.assertEquals(driver.findElement(CloudHomePage.Home_Legal_notice_txt).getText(), "Products");
+		  //  Thread.sleep(20000);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.close();
+		    
+		    // go back to main window
+		    driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    System.out.println("back to main window");
+		    
+		    /*----- Terms of Use --------------------*/
+		    Utility.selectList(driver, "Terms of Use" , By.xpath("//div[@class='footerLeft columns']/ul/li"));
+		 //   driver.findElement(CloudHomePage.Home_Terms_of_Use).click();
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(5000);
+		    System.out.println("Terms of Use");
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    
+		    /* ----- Navigating to New Window -----*/
+			Set allWindowHandles3 = driver.getWindowHandles();
+		    int win3 = allWindowHandles3.size();
+			System.out.println("no. of windows open  "  + win3);
+			Thread.sleep(10000);
+			driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			String window4 = (String) allWindowHandles3.toArray()[1];
+			driver.switchTo().window(window4);	
+			driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+		    Thread.sleep(25000);
+		    Assert.assertEquals(driver.findElement(CloudHomePage.Home_Terms_of_use_txt).getText(), "Sign In/Register");
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    System.out.println("Terms of Use................");
+		    driver.close();
+		    
+		    // go back to main window
+		    driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    		    
+		    /*----- Your Privacy Rights --------------------*/
+	        Utility.selectList(driver, "Your Privacy Rights" , By.xpath("//div[@class='footerLeft columns']/ul/li"));
+		//    driver.findElement(CloudHomePage.Home_Your_Privacy_Rights).click();
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(10000);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    
+		    /* ----- Navigating to New Window -----*/
+			Set allWindowHandles4 = driver.getWindowHandles();
+		    int win4 = allWindowHandles4.size();
+			System.out.println("no. of windows open  "  + win4);
+			Thread.sleep(10000);
+			driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			String window5 = (String) allWindowHandles4.toArray()[1];
+			driver.switchTo().window(window5);	
+			driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+		    Thread.sleep(20000);
+		    Assert.assertEquals(driver.findElement(CloudHomePage.Home_privacy_txt).getText(), "Privacy");
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    driver.close();
+		    
+		    // go back to main window
+		    driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(20000);
+		    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    System.out.println("back to main window");
+		    System.out.println("Test Completed");
+		    		   
+	 }
+	 
+	 catch(Exception err) { 
+	   	     	 Assert.fail(err.getMessage());
+	   	      }
+	   	   }
+	   	    @AfterClass
+	   	    public void testCleanUp()   {
+	   	    //  Quit -closes all the open windows
+   	      driver.quit();
+	   	    }
+	}

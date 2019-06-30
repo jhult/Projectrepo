@@ -1,0 +1,52 @@
+# this file stores the config values required to run
+
+# Set the browser type for execution, You can either set 1 browser (browser.type=firefox ) or all browser (browser.type=all ).
+#browser.type=iexplore
+#browser.type=chrome
+browser.type=firefox
+#browser.type=android
+#browser.type=all
+
+# Android Emulator Launch Flag | If  android.launch.flag = 1 : It will Launch Emulator (to be used when running tests in batch as it launch emulator once in batch or for launching emulators for 1st time) 
+# If android.launch.flag = 0 : It will not Launch Emulator (to be used when executing single-single test from eclipse and emulator is already up and running).
+android.launch.flag=0
+
+# copy chromedriver.exe to path where chrome.exe is present
+#chrome.driver.path=C:\\Users\\ashikuku\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe
+chrome.driver.path=C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe
+
+# default wait time in seconds. Set it as per speed of internet connection/ wifi connection
+wait.for.seconds=30
+
+# Application url's for  QAGA  Env
+
+app.url=https://site.c9qaga.us.oracle.com/home
+userid= bhuvaneswari.thiraviam@oracle.com 
+password=Opcqa@456
+domain=opcqamig1632opcqamig1632
+data.center.name=US Commercial 1
+ 
+#app.url=https://site.c9qaga.us.oracle.com/home
+#userid= manonmani.jay@oracle.com
+#password=Opcqa123!
+#domain=opcqa1631migdc1
+#ata.center.name=US Commercial 1
+
+#userid=manjunatha.paramesh@oracle.com
+#password=Opcqa123!
+#domain=opcqacert1532java
+#data.center.name=US Commercial 1
+
+# for 15.3.4 MIG DC1  Env
+#userid=shraddha.padhi@oracle.com
+#password=Opcqa123!
+#domain=usoracletrial30430
+#data.center.name=US Commercial 1
+
+
+# for 15.2.5 QAGA Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial70495
+#data.center.name=US Commercial 1
+

@@ -1,0 +1,77 @@
+# this file stores the config values required to run
+
+# Set the browser type for execution, You can either set 1 browser (browser.type=firefox ) or all browser (browser.type=all ).
+#browser.type=iexplore 
+browser.type=chrome
+#browser.type=firefox
+#browser.type=android
+#browser.type=all
+
+# Android Emulator Launch Flag | If  android.launch.flag = 1 : It will Launch Emulator (to be used when running tests in batch as it launch emulator once in batch or for launching emulators for 1st time) 
+# If android.launch.flag = 0 : It will not Launch Emulator (to be used when executing single-single test from eclipse and emulator is already up and running).
+android.launch.flag=0
+
+# copy chromedriver.exe to path where chrome.exe is present
+
+chrome.driver.path=C:\\Users\\ashikuku\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe
+#chrome.driver.path=C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe
+
+# default wait time in seconds. Set it as per speed of internet connection/ wifi connection
+wait.for.seconds=20
+
+# Application url's for 13.2
+#app.url=https://site.c9qaga.us.oracle.com/home
+#app.url=https://site.dc2.c9edgga.oraclecorp.com/home
+#app.url=http://slc03try.us.oracle.com:8875/cs/Satellite?pagename=cloudUiSite/Page/LandingLayoutTab
+#app.url=https://cloud.c9qa132.oraclecorp.com/mycloud/faces/index.jspx
+#app.url=https://cloud.c9qa123.oraclecorp.com/mycloud/faces/index.jspx
+#app.url=https://site.c9qa123.oraclecorp.com/cs/Satellite?pagename=cloudUiSite/Page/LandingLayoutTab
+#app.url=https://cloud-stage.oracle.com/home
+
+# Application url's for 13.1
+#app.url=https://cloud.oracle.com/mycloud/f?p=service:home:0
+#app.url=https://cloud.c9qaga.us.oracle.com/apex/f?p=5001:1
+#app.url=https://cloud.c9edgga.oraclecorp.com/apex/f?p=5001:1 
+#app.url=https://cloud2.c9edgga.oraclecorp.com/apex/f?p=5001:1
+#app.url=https://cloud.c9qa131.oraclecorp.com/apex/f?p=5001:1
+
+# Application url's for 14.1
+app.url=http://slc06kxi.us.oracle.com:7897/mycloud/faces/myServices.jspx 
+
+# users credentials 
+# for cloud.c9qaga on 18Feb2014 
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial27140
+#data.center.name=US Commercial 1
+
+# for cloud.c9qaga on 18Feb2014  
+#userid=navya.subbaiah@oracle.com
+#password=Opcqa123!
+#domain=innavtrial22707
+#data.center.name=US Commercial 1
+
+# for 14.1 on 28Feb2014 
+userid=manjunatha.paramesh@oracle.com 
+password=Opcqa123!
+domain=intpmtrial82753
+data.center.name=US Commercial 1
+
+# for cloud.c9edgga on 30Jan2014 
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Opcqa123@
+#domain=inoracletrial18729
+#data.center.name=US Commercial 1
+
+# for 14.1 cloud on 16Jan2014 
+#userid=c9mats-auto_ww@oracle.com
+#password=Welcome_1
+#domain=usoracletrial97221
+#data.center.name=US Commercial 1
+
+# for 9edgga[edg dc2] on 16FebJuly2014
+#userid=Manjunatha.paramesh@oracle.com
+#password=Opcqa123!
+#domain=intpmlabstrial88894
+#data.center.name=US Commercial 1
+

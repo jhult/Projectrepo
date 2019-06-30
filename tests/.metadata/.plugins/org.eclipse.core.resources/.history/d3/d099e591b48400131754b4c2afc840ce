@@ -1,0 +1,149 @@
+package com.qa132.java;
+
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.locators.CloudHomePage;
+import com.opc.locators.CloudMyServicePage;
+import com.opc.locators.CloudSelectSignInPage;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_EMGC_02_DeployingJavaApplication_Test extends BaseTest{
+//	WebDriver driver;
+	Select select;
+	
+
+	   
+  @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+  public void test(String browserName)  {
+	  
+	  try{
+		  
+	  /* ----- Setting up the browser to run on -----*/ 
+	  System.out.println(browserName);	  
+	  driver = Browser.browserToRun(driver, browserName);
+	  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  
+	  /* ----- Launch C9 site -----*/
+	  driver.get(Config.APP_URL); 
+	  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  Thread.sleep(5000);
+	  
+	  /* ---------- SignIN to MyServices  ---------- */	   
+	  Utility.myServicePage(driver);
+	  
+	  /* ----- Login to My service -----*/
+	  Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+	  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  Thread.sleep(5000);
+	  
+	     /*----- Verify Header on My services page  ------*/
+      System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText());
+      Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText().contains("My Services"), "My Services");
+   
+	  
+	  /* ----- Navigating to Service -----*/	
+	  Utility.selectPlatformService(driver, "java");
+      driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  Thread.sleep(10000);
+
+	  driver.findElement(By.xpath(".//*[@id='pt1:pt2:cb2']")).click();
+	  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  Thread.sleep(5000);
+	 
+	  /* ----- Navigating to Java Cloud Services Control Window -----*/
+	  Set allWindowHandles = driver.getWindowHandles();
+	  int win = allWindowHandles.size();
+	  System.out.println("no. of windows open  "  + win);
+	  String window1 = (String) allWindowHandles.toArray()[2];
+	  driver.switchTo().window(window1);	
+	  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  driver.manage().window().maximize();
+	  Thread.sleep(20000);
+	  
+	  System.out.println(driver.findElement(By.xpath(".//*[@id='emT:ch_fn_txt']")).getText());
+	  Assert.assertEquals("Java Cloud Services Control", driver.findElement(By.xpath(".//*[@id='emT:ch_fn_txt']")).getText());
+		       
+	  int n= driver.findElements(By.xpath(".//*[@id='emT:appsRegion:0:pcl1:appsTable:appNameCol']/div[2]")).size();
+	  System.out.println("element values "+ n);
+	  
+	  driver.findElement(By.xpath(".//*[@id='emT:appsRegion:0:pcl1:appsTable:appNameCol']/div[2]")).click();
+	  driver.findElement(By.xpath(".//*[@id='emT:appsRegion:0:pcl1:ctb1::icon']")).click();
+	  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  Thread.sleep(5000);
+	  
+//	  WebElement element = driver.findElement(By.id("emT:it1::content"));
+//	  JavascriptExecutor executor = (JavascriptExecutor)driver;
+//	  executor.executeScript("arguments[0].click();", element);
+//	  executor.executeScript("arguments[0].sendKeys("+"application1"+");", element);
+	  
+	  /* ----- Deploy to Java Services -----*/
+	  driver.findElement(By.xpath("//input[@id='emT:if1::content']")).sendKeys("C:\\SAFc\\tests\\OPC\\data\\hello.war");
+	  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  Thread.sleep(5000);
+	  
+	  driver.findElement(By.cssSelector("input[id='emT:it1::content']")).sendKeys("application1");
+//	  driver.findElement(By.xpath("//input[@id='emT:it1::content']")).sendKeys("application1");
+	  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  Thread.sleep(5000);	
+	   
+	 int num = driver.findElements(By.cssSelector("span[class='x11g']")).size();
+	 System.out.println("css : "+ num);
+	 
+//	 WebElement element = driver.findElement(By.cssSelector("span[class='x11g']"));
+//	 element.click(); 
+	 
+	 List<WebElement> elements = driver.findElements(By.cssSelector("span[class='x11g']"));
+	 for (WebElement element : elements) {
+	     String str =element.getText();
+	     System.out.println("css str : "+ str);
+	     if (str.equalsIgnoreCase("Deploy")){
+	    	 element.click(); 
+	    	 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS); 
+	    	 	
+	     }
+	 }
+	 
+	
+	 Thread.sleep(20000); 
+	                                               
+	 Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:inlineMsgView:inlineMsg']/table/tbody/tr[2]/td[2]")).getText().contains("has been uploaded"));
+
+	 
+//	 Assert.assertEquals("The application application1 has been uploaded", driver.findElement(By.xpath(".//*[@id='emT:inlineMsgView:inlineMsg']/table/tbody/tr[2]/td[2]")).getText());
+//		The application application1 has been uploaded, and Java Cloud Service Job 104995 has been started. Please monitor the progress of this job and refresh the page to see the application when the job is completed.
+//	 if ("The application could not be deployed because an application named application1 has already been deployed.".equalsIgnoreCase(driver.findElement(By.xpath(".//*[@id='emT:inlineMsgView:inlineMsg']/table/tbody/tr[2]/td[2]")).getText())){	 	 
+//	 for (int i =0; i<5;i++){
+//		 driver.findElement(By.xpath(".//*[@id='emT:ch_st_ind_fn::icon']")).click();
+//		 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS); 
+//	 }
+//	 driver.manage().deleteAllCookies();
+	  
+	 
+  } catch(Exception err) { 
+ 	 Assert.fail(err.getMessage());
+  } finally{   	 
+ 	 
+// 	 driver.quit();
+  }
+}
+@AfterClass
+public void testCleanUp()   {
+//  Quit -closes all the open windows
+  driver.quit();
+}
+	   
+}

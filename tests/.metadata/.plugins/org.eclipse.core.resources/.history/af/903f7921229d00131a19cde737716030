@@ -1,0 +1,162 @@
+package com.qa132.java;
+
+/* Test case to verify the information displayed in the UI
+ * Login to Java console page 
+ * Verify Home page is displayed using headerName.
+ * Java console page is displayed using headerName on click of Manage .
+ * verify log message is displayed using headerName 
+ * verify Deploy application option is displayed using headerName 
+ * verify username is displayed in the menu
+ * verify Table view page of Response and load  is displayed
+ * Verify Table view page of Resource usage is displayed
+ */
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.locators.CloudHomePage;
+import com.opc.locators.CloudMyServicePage;
+import com.opc.locators.CloudSelectSignInPage;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_Java_12_VerifyUI_Test extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	
+  
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    	 try{   
+    		 
+	  		   System.out.println(browserName);
+			   driver = Browser.browserToRun(driver1, browserName);
+			   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			   
+			   /* ----- Launch C9 site -----*/
+			   driver.get(Config.APP_URL); 
+			   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			   Thread.sleep(10000);
+				  
+			   /* ---------- SignIN to MyServices  ---------- */	   
+			   Utility.myServicePage(driver);
+			 
+			   
+			   /* ----- Provide Login Credentials -----*/	
+		       Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+		       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		       Thread.sleep(10000);
+		       
+		       
+			     /*----- Verify Header on My services page  ------*/
+		      System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText());
+	          Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText().contains("My Services"), "My Services");
+		    
+		 	  
+			  /* ----- Navigating to Service -----*/	
+	  	      Utility.selectPlatformService(driver, "java");
+	  	      driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  	      Thread.sleep(10000);
+	
+			  driver.findElement(By.xpath(".//*[@id='pt1:pt2:cb2']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			 
+			  /* ----- Navigating to Java Cloud Services Control Window -----*/
+			  Set allWindowHandles = driver.getWindowHandles();
+			  int win = allWindowHandles.size();
+			  System.out.println("no. of windows open  "  + win);
+			  String window1 = (String) allWindowHandles.toArray()[2];
+			  driver.switchTo().window(window1);	
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  driver.manage().window().maximize();
+			  Thread.sleep(20000);
+		       
+			   /*--Verify Java service console page---*/		       
+		       System.out.println(driver.findElement(By.xpath(".//*[@id='emT:ch_fn_txt']")).getText());			  
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:ch_fn_txt']")).getText().contains(""),"Java Cloud Services Control");
+			  
+			  /*---Verify Java service home page console page---*/
+			   //Click Home page link
+		       driver.findElement(By.xpath(".//*[@id='emT:sdkbc:bc_MODEL_aas_c9_home']")).click();
+		       Thread.sleep(10000);
+			  //Click Manage link
+		       driver.findElement(By.xpath(".//*[@id='emT:pnlc3:svcsTbl:0:cl1::icon']")).click();
+		       Thread.sleep(10000);		       
+		       //verify console page
+			  System.out.println(driver.findElement(By.xpath(".//*[@id='emT:ph2::_afrTtxt']/div/h1")).getText());			  
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:ph2::_afrTtxt']/div/h1")).getText().contains(""),"javatrial");
+				       
+
+			  /*----Verify user login info---*/		 
+			  String Userinfo = Config.USERID.toUpperCase();
+			  System.out.println(driver.findElement(By.xpath(".//*[@id='emT:pref']/div/table/tbody/tr/td[2]/a")).getText());			  
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:pref']/div/table/tbody/tr/td[2]/a")).getText().contains(Userinfo));
+			  
+			  /*----Verify Application present---*/					 
+			  System.out.println(driver.findElement(By.xpath(".//*[@id='emT:sdf3::text']")).getText());			  
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:sdf3::text']")).getText().contains("Applications"),"Aplications present");
+			  
+;
+			  
+			  /*----Verify for Deploy new option present---*/				 
+				 
+			  System.out.println(driver.findElement(By.xpath(".//*[@id='emT:appsRegion:0:pcl1:ctb1']/a/span")).getText());			  
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:appsRegion:0:pcl1:ctb1']/a/span")).getText().contains("Deploy"),"Deploy New present");
+			  
+			  /*----Verify Libraies present---*/				 
+				 
+			  System.out.println(driver.findElement(By.xpath(".//*[@id='emT:sdf1::text']")).getText());			  
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:sdf1::text']")).getText().contains("Libraries"),"Libraries present");
+			  
+			  /*----Verify Table view of Response and load---*/
+			  //Click Table view
+		     driver.findElement(By.xpath(".//*[@id='emT:charRgn:0:emT_charRgn_0_performance_graph_accLink']")).click();
+		    Thread.sleep(10000);
+		       
+		       //Verify
+			  System.out.println(driver.findElement(By.xpath(".//*[@id='emT:charRgn:0:emT_charRgn_0_performance_graph_accWindow::_ttxt']")).getText());			   
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:charRgn:0:emT_charRgn_0_performance_graph_accWindow::_ttxt']")).getText().contains("Chart"));
+			  
+			  //Click on Close icon
+			  driver.findElement(By.xpath(".//*[@id='emT:charRgn:0:emT_charRgn_0_performance_graph_accWindow::close']")).click();
+			  Thread.sleep(1000);
+			  
+			  /*----Verify Table view of Resource usage---*/
+			  //Click Table view
+		       driver.findElement(By.xpath(".//*[@id='emT:resRgn:0:emT_resRgn_0_chartPanel_accLink']")).click();
+		      Thread.sleep(10000);
+		       
+		       //Verify
+		      System.out.println(driver.findElement(By.xpath(".//*[@id='emT:resRgn:0:emT_resRgn_0_chartPanel_accWindow::_ttxt']")).getText());
+			  
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:resRgn:0:emT_resRgn_0_chartPanel_accWindow::_ttxt']")).getText().contains("Usage"));
+			  
+			  //Click on Close icon
+			  driver.findElement(By.xpath(".//*[@id='emT:resRgn:0:emT_resRgn_0_chartPanel_accWindow::close']")).click();
+			  Thread.sleep(1000);
+	    
+	    
+        } catch(Exception err) { 
+    	 Assert.fail(err.getMessage());
+     } 
+  }
+   @AfterClass
+   public void testCleanUp()   {
+   //  Quit -closes all the open windows
+      driver.quit();
+   }
+	   
+}

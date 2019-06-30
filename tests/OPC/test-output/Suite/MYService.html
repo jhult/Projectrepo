@@ -1,0 +1,201 @@
+<html>
+<head>
+<title>TestNG:  MYService</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>MYService</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>10/1/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Sep 30 00:23:39 MDT 2015</td>
+</tr>
+<tr><td>Total time:</td><td>464 seconds (464972 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_03_VerifyUI_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_03_VerifyUI_Test<br>Parameters: firefox<br/>
+<a href="#Output-1420210030" onClick='toggleBox("Output-1420210030", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1420210030" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1420210030">
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\09-30-2015\09-30-2015_12.26.30_com.qa141.myservices.C9_MYS_03_VerifyUI_Test_test.png target='_blank' >09-30-2015_12.26.30_com.qa141.myservices.C9_MYS_03_VerifyUI_Test_test.png</a><br/>
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\09-30-2015\09-30-2015_12.26.30_com.qa141.myservices.C9_MYS_03_VerifyUI_Test_test.png target='_blank' >Screenshot</a><br/>
+<img src="file:///C:\SAFc\tests\OPC\test-output\screenShots\09-30-2015\09-30-2015_12.26.30_com.qa141.myservices.C9_MYS_03_VerifyUI_Test_test.png" width=500 height=300" alt=""/><br /><br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;.//*[@id=&apos;pt1:sections:j_id_id3pc6&apos;]/span[2]&quot;}
+Command duration or timeout: 30.07 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05gyj&apos;, ip: &apos;10.240.125.231&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_34&apos;
+Session ID: dea4c924-c856-4620-b524-64699607deb6
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=firefox, rotatable=false, locationContextEnabled=true, version=31.7.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, applicationCacheEnabled=true, takesScreenshot=true}]
+Command duration or timeout: 30.44 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05gyj&apos;, ip: &apos;10.240.125.231&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_34&apos;
+Session ID: 88b64aaa-dc1d-4369-b657-de547fd76fa6
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=88b64aaa-dc1d-4369-b657-de547fd76fa6, version=31.7.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, applicationCacheEnabled=true, takesScreenshot=true}]
+	at com.qa141.myservices.C9_MYS_03_VerifyUI_Test.test(C9_MYS_03_VerifyUI_Test.java:145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 11 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1420210030", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1420210030'><pre>java.lang.AssertionError: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;.//*[@id=&apos;pt1:sections:j_id_id3pc6&apos;]/span[2]&quot;}
+Command duration or timeout: 30.07 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05gyj&apos;, ip: &apos;10.240.125.231&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_34&apos;
+Session ID: dea4c924-c856-4620-b524-64699607deb6
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=firefox, rotatable=false, locationContextEnabled=true, version=31.7.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, applicationCacheEnabled=true, takesScreenshot=true}]
+Command duration or timeout: 30.44 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05gyj&apos;, ip: &apos;10.240.125.231&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.6.0_34&apos;
+Session ID: 88b64aaa-dc1d-4369-b657-de547fd76fa6
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities [{platform=XP, acceptSslCerts=true, javascriptEnabled=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=88b64aaa-dc1d-4369-b657-de547fd76fa6, version=31.7.0, cssSelectorsEnabled=true, databaseEnabled=true, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, applicationCacheEnabled=true, takesScreenshot=true}]
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.qa141.myservices.C9_MYS_03_VerifyUI_Test.test(C9_MYS_03_VerifyUI_Test.java:145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:80)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:128)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>170</td>
+<td>com.qa141.myservices.C9_MYS_03_VerifyUI_Test@3dbbd23f</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_01_loginLogout_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_01_loginLogout_Test<br>Parameters: firefox</td>
+<td></td>
+<td>122</td>
+<td>com.qa141.myservices.C9_MYS_01_loginLogout_Test@60961dff</td></tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_02_VerifyAllLinks_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_02_VerifyAllLinks_Test<br>Parameters: firefox</td>
+<td></td>
+<td>153</td>
+<td>com.qa141.myservices.C9_MYS_02_VerifyAllLinks_Test@3b75078b</td></tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_05_ErrorHandling_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_05_ErrorHandling_Test<br>Parameters: firefox</td>
+<td></td>
+<td>179</td>
+<td>com.qa141.myservices.C9_MYS_05_ErrorHandling_Test@3ce95a56</td></tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_04_FieldLevelCheck_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_04_FieldLevelCheck_Test<br>Parameters: firefox</td>
+<td></td>
+<td>180</td>
+<td>com.qa141.myservices.C9_MYS_04_FieldLevelCheck_Test@571a75a2</td></tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_06_Security_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_06_Security_Test<br>Parameters: firefox</td>
+<td></td>
+<td>126</td>
+<td>com.qa141.myservices.C9_MYS_06_Security_Test@24f9fdc</td></tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_10_FunctionalityCheck_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_10_FunctionalityCheck_Test<br>Parameters: firefox</td>
+<td></td>
+<td>187</td>
+<td>com.qa141.myservices.C9_MYS_10_FunctionalityCheck_Test@15aaf0b3</td></tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_08_ValidateErrorpages_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_08_ValidateErrorpages_Test<br>Parameters: firefox</td>
+<td></td>
+<td>198</td>
+<td>com.qa141.myservices.C9_MYS_08_ValidateErrorpages_Test@4cc39a20</td></tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_07_Filedownload.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_07_Filedownload<br>Parameters: firefox</td>
+<td></td>
+<td>224</td>
+<td>com.qa141.myservices.C9_MYS_07_Filedownload@510dc6b5</td></tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_09_SearchFilter_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_09_SearchFilter_Test<br>Parameters: firefox</td>
+<td></td>
+<td>205</td>
+<td>com.qa141.myservices.C9_MYS_09_SearchFilter_Test@fcfa52</td></tr>
+<tr>
+<td title='com.qa141.myservices.C9_MYS_11_QuickLinks_Test.test()'><b>test</b><br>Test class: com.qa141.myservices.C9_MYS_11_QuickLinks_Test<br>Parameters: firefox</td>
+<td></td>
+<td>215</td>
+<td>com.qa141.myservices.C9_MYS_11_QuickLinks_Test@a210b5b</td></tr>
+</table><p>
+</body>
+</html>

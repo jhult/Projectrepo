@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <project basedir="." default="runTest" name="Ant file for TestNG">
+   
+  <property name="src" location="src" />
+  <property name="bin" location="bin" />
+  <property name="libs" location="lib" />
+  <property name="ant.home" value="C:\SAFc\setup\apache-ant-1.8.4"/>
+   
+  <path id="class.path">
+      <pathelement location="${libs}/testng-6.9beta.jar" />
+ 	  <pathelement location="${libs}/selenium-server-standalone-2.39.0.jar" />
+	  <pathelement location="${libs}/safc-3.0.jar"/>
+      <pathelement location="${libs}/poi-3.8-20120326.jar"/>
+      <pathelement location="${bin}" />
+  </path>
+   
+    <taskdef name="testng" classname="org.testng.TestNGAntTask">
+      <classpath>
+        <pathelement location="lib/testng-6.9beta.jar"/>
+      </classpath>
+    </taskdef>
+ 
+  <target name="runTest">
+ 
+    <mkdir dir="test-output"/><!-- Create the output directory. -->
+  	
+    <testng outputdir="test-output" classpathref="class.path" useDefaultListeners="false"
+        listeners="org.testng.reporters.EmailableReporter, org.testng.reporters.XMLReporter"> 
+    	 <xmlfileset dir="." includes="testng.xml"/>
+    <!-- <xmlfileset dir="." includes="test-output\safc-failed.xml"/> 
+    	 <xmlfileset dir="." includes="testng-qa1536-certificationpatch.xml"/> -->
+    </testng> 
+  	
+  	
+  </target>
+ </project>

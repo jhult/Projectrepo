@@ -1,0 +1,141 @@
+package com.qa132.java;
+
+/* Test case to verify error handling of the application
+ * Scenario taken for verification 
+ * Login into the Java Service
+ * Provide invalid input data and try to deploy the application 
+ * Verify the error message being displayed
+ */
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.locators.CloudHomePage;
+import com.opc.locators.CloudMyServicePage;
+import com.opc.locators.CloudSelectSignInPage;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_Java_14_ValidateError_Test extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	
+  
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    	 try{   
+			   System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());	 
+			   System.out.println(browserName);
+			   driver = Browser.browserToRun(driver1, browserName);
+			   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			   
+			   /* ----- Launch C9 site -----*/
+			   driver.get(Config.APP_URL); 
+			   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			   Thread.sleep(10000);
+				  
+			   /* ---------- SignIN to MyServices  ---------- */	   
+			   Utility.myServicePage(driver);
+			 
+			   
+			   /* ----- Provide Login Credentials -----*/	
+		       Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+		       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		       Thread.sleep(10000);
+		       
+		       
+			     /*----- Verify Header on My services page  ------*/
+		      System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText());
+	          Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText().contains("My Services"), "My Services");
+		    
+		 	  
+			  /* ----- Navigating to Service -----*/	
+	  	      Utility.selectPlatformService(driver, "java");
+	  	      driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  	      Thread.sleep(10000);
+
+			  driver.findElement(By.xpath(".//*[@id='pt1:pt2:cb2']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			 
+			  /* ----- Navigating to Java Cloud Services Control Window -----*/
+			  Set allWindowHandles = driver.getWindowHandles();
+			  int win = allWindowHandles.size();
+			  System.out.println("no. of windows open  "  + win);
+			  String window1 = (String) allWindowHandles.toArray()[2];
+			  driver.switchTo().window(window1);	
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  driver.manage().window().maximize();
+			  Thread.sleep(20000);
+			 
+			  //Click DeployNew button
+		       driver.findElement(By.xpath(".//*[@id='emT:appsRegion:0:pcl1:ctb1']/a/span")).click();
+		       Thread.sleep(10000);
+		      
+		       System.out.println(driver.findElement(By.xpath(".//*[@id='emT:ph2::_afrTtxt']/div/h1")).getText());
+		       
+		      //Provide invalid inputs--- Value containg special characters
+		      driver.findElement(By.xpath(".//*[@id='emT:it1::content']")).sendKeys("@@@ ");
+	 		 
+		       
+		     //Click Deploy
+		     driver.findElement(By.xpath(".//*[@id='emT:ctb1']")).click();
+		     Thread.sleep(5000);
+		       
+		     System.out.println(driver.getTitle());
+		     
+		     //Check for error pages
+		    
+		     String Error_message = driver.findElement(By.xpath(".//*[@id='d1::msgDlg::_cnt']/div/table/tbody/tr[1]/td[2]/table/tbody/tr/td[2]/div")).getText();
+		     System.out.println("CORRESPONDING ERROR MESSAGE"+Error_message);
+			  
+		     // System.out.println("Error message pop up container"+driver.findElement(By.xpath(".//*[@id='d1::msgDlg::_ccntr']")).getText());
+			  
+			 Assert.assertTrue(Error_message.contains("are not allowed as names"),"ERROR REPORTED");
+			   
+			 /*--Provide invalid inputs--- Value with spaces---*/
+			 driver.findElement(By.xpath(".//*[@id='emT:it1::content']")).clear();
+			 driver.findElement(By.xpath(".//*[@id='emT:it1::content']")).sendKeys("   ");
+		 		      
+			 //  driver.findElement(By.name("emT:it1")).sendKeys("####");
+			 // System.out.println("NAME"+ driver.findElement(By.name("emT:it1")).getText());
+			       
+			 //Click Deploy
+			 driver.findElement(By.xpath(".//*[@id='emT:ctb1']")).click();
+			 Thread.sleep(5000);
+			       
+			 System.out.println(driver.getTitle());
+			     
+			 //Check for error pages
+			    
+			 Error_message = driver.findElement(By.xpath(".//*[@id='d1::msgDlg::_cnt']/div/table/tbody/tr[1]/td[2]/table/tbody/tr/td[2]/div")).getText();
+			 System.out.println("CORRESPONDING ERROR MESSAGE"+Error_message);
+				  
+			 // System.out.println("Error message pop up container"+driver.findElement(By.xpath(".//*[@id='d1::msgDlg::_ccntr']")).getText());
+				  
+			  Assert.assertTrue(Error_message.contains("You must enter a value"),"ERROR REPORTED");
+				       
+			
+	      
+        } catch(Exception err) { 
+    	 Assert.fail(err.getMessage());
+     } 
+  }
+   @AfterClass
+   public void testCleanUp()   {   //  Quit -closes all the open windows
+    driver.quit();
+   }
+	   
+}

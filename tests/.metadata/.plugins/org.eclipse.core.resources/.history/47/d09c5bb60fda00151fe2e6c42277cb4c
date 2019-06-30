@@ -1,0 +1,72 @@
+package com.MigDC1.StoreGSIIntegration;
+
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+import com.safc.configuration.DbConnection;
+
+
+public class TAS_Test extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	  
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    try{  
+//		 System.setOut(new PrintStream(new FileOutputStream(".\\log\\console.txt")));
+//	     System.out.println("This is System class!!!");
+	     
+    	  String ssopassword = DbConnection.readDataFromExcelFile(".\\data\\TestData.xls", "Sheet1", 1, 4)	;
+  	    
+		   System.out.println("*-----Environment Used for testing------ *"+"\n"+Config.APP_URL +"\n" +"\n");
+		   System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());	 
+		   System.out.println(browserName);
+		   
+		   driver = Browser.browserToRun(driver1, browserName);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   
+		   driver.navigate().to("http://slc03zqc.us.oracle.com:7001/C9_OrderStatusDashboard/");
+  	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  	      driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//  	     Thread.sleep(30000);
+  	     
+  	    
+  	    	System.out.println(driver.findElement(By.xpath(".//*[@class='tab_title']")).getText());
+  	   
+  	 driver.findElement(By.xpath(".//*[@id='accountName']")).sendKeys("12345");
+       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+       Thread.sleep(5000);  
+		   
+		 							           
+    } catch(Exception err) { 
+        Assert.fail(err.getMessage());
+}
+}
+@AfterClass
+public void testCleanUp()   {
+/*----- Logout ------*/
+Utility.logOut(driver);
+  //  Quit -closes all the open window
+driver.quit();
+
+  }
+}
+        

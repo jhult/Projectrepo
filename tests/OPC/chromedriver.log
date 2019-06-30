@@ -1,0 +1,57 @@
+[0.000][INFO]:      ChromeDriver 22.0.1203.0 C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe
+[1.138][FINE]:      Initializing session with capabilities {
+   "proxy": {
+      "autodetect": false,
+      "class": "org.openqa.selenium.Proxy",
+      "ftpProxy": null,
+      "hCode": 1699608420,
+      "httpProxy": null,
+      "httpsProxy": null,
+      "noProxy": null,
+      "proxyAutoconfigUrl": "http://wpad/wpad.dat",
+      "proxyType": "PAC",
+      "socksPassword": null,
+      "socksProxy": null,
+      "socksUsername": null,
+      "sslProxy": null
+   }
+}
+
+[1.138][INFO]:      Unrecognized proxy capability: hCode
+[1.138][INFO]:      Unrecognized proxy capability: httpsProxy
+[1.138][INFO]:      Unrecognized proxy capability: socksPassword
+[1.138][INFO]:      Unrecognized proxy capability: socksProxy
+[1.138][INFO]:      Unrecognized proxy capability: socksUsername
+[1.138][INFO]:      Launching chrome: "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-hang-monitor --disable-prompt-on-repost --dom-automation --full-memory-crash-report --no-default-browser-check --no-first-run --ignore-certificate-errors --disable-popup-blocking --homepage=about:blank --proxy-pac-url=http://wpad/wpad.dat
+[4.449][INFO]:      Connected to Chrome successfully. Version: 31.0.1650.63
+[4.487][FINE]:      Command received (/session/e11ec83cff834a53f3a4dbab93610bec)
+[4.488][FINE]:      Command finished (/session/e11ec83cff834a53f3a4dbab93610bec) with response {
+   "sessionId": "e11ec83cff834a53f3a4dbab93610bec",
+   "status": 0,
+   "value": {
+      "acceptSslCerts": false,
+      "applicationCacheEnabled": false,
+      "browserConnectionEnabled": false,
+      "browserName": "chrome",
+      "chrome.chromedriverVersion": "22.0.1203.0",
+      "chrome.nativeEvents": false,
+      "cssSelectorsEnabled": true,
+      "databaseEnabled": false,
+      "handlesAlerts": true,
+      "javascriptEnabled": true,
+      "locationContextEnabled": false,
+      "nativeEvents": true,
+      "platform": "windows",
+      "rotatable": false,
+      "takesScreenshot": true,
+      "version": "31.0.1650.63",
+      "webStorageEnabled": true
+   }
+}
+
+[4.502][FINE]:      Command received (/session/e11ec83cff834a53f3a4dbab93610bec/window/current/maximize) with params {
+   "windowHandle": "current"
+}
+
+[4.502][FINER]:     Waiting for all views to stop loading...
+[4.502][FINER]:     Done waiting for all views to stop loading

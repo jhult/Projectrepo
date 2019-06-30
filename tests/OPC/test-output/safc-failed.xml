@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><suite name="Failed suite" parallel="none">
+<test name="Test(failed)">
+<classes>
+<class name="com.qa141.myservices.C9_MYS_01_loginLogout_Test"/>
+<class name="com.qa141.myservices.C9_MYS_02_VerifyAllLinks_Test"/>
+<class name="com.qa141.myservices.C9_MYS_04_FieldLevelCheck_Test"/>
+<class name="com.qa141.myservices.C9_MYS_07_Filedownload"/>
+<class name="com.qa141.myservices.C9_MYS_05_ErrorHandling_Test"/>
+<class name="com.qa141.myservices.C9_MYS_13_SetFavorite_Test"/>
+<class name="com.qa141.myservices.C9_MYS_06_Security_Test"/>
+<class name="com.qa141.myservices.C9_MYS_10_FunctionalityCheck_Test"/>
+<class name="com.qa141.myservices.C9_MYS_09_MyHome_Test"/>
+<class name="com.qa141.myaccount.C9_MYA_13_HeadernFooter_test"/>
+<class name="com.qa141.myservices.C9_MYS_08_ValidateErrorpages_Test"/>
+</classes>
+</test>
+</suite>

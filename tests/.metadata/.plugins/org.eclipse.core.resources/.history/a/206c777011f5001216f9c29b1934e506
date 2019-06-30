@@ -1,0 +1,52 @@
+# this file stores the config values required to run
+
+#browser.type=iexplore 
+#browser.type=chrome
+browser.type=firefox
+#browser.type=all
+
+# copy chromedriver.exe to path where chrome.exe is present
+
+chrome.driver.path=C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe
+
+# default wait time in seconds. Set it as per speed of internet connection/ wifi connection
+wait.for.seconds=60
+
+# Application url's
+#app.url=https://cloud.oracle.com/mycloud/f?p=service:home:0
+app.url=https://cloud.c9qaga.us.oracle.com/apex/f?p=5001:1
+#app.url=https://cloud.c9edgga.oraclecorp.com/apex/f?p=5001:1 
+#app.url=https://cloud2.c9edgga.oraclecorp.com/apex/f?p=5001:1
+#app.url=https://cloud.c9qa131.oraclecorp.com/apex/f?p=5001:1
+
+# users credentials 
+
+# for cloud.c9qaga on 25 Jul
+userid=ashish.d.kumar@oracle.com
+password=Opc123
+domain=trialagrr
+data.center.name=US Commercial 1
+
+# for cloud.c9qaga on 24 Jul
+#userid=ashish.d.kumar@oracle.com
+#password=Opc123
+#domain=trialagpm
+#data.center.name=US Commercial 1
+
+# for cloud.c9edgga[edg dc1] on 3July2013
+#userid=ashish.d.kumar@oracle.com
+#password=Cloud123
+#domain=trialabfb
+#data.center.name=US Commercial 1
+
+# for cloud2.c9edgga[edg dc2] on 3July2013
+#userid=ashish.d.kumar@oracle.com
+#password=Cloud123
+#domain=trialaeex
+#data.center.name=US Commercial 1
+
+# for cloud c9qa131 on 24Apr2013
+#userid=ashish.d.kumar@oracle.com
+#password=Opc123
+#domain=trialaapa
+#data.center.name=US Commercial - Austin

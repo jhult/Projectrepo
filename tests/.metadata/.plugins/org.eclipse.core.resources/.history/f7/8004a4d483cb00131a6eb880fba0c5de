@@ -1,0 +1,161 @@
+package com.qa132.services;
+/**
+ * @author ashish kumar
+ *
+ */
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.locators.CloudMyServicePage;
+import com.safc.configuration.BaseTest;
+import com.opc.util.Utility;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+import com.safc.configuration.DbConnection;
+
+public class C9_Storage_01_Create_Trial_StorageService_Test extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    try{  
+       String ssopassword = DbConnection.readDataFromExcelFile(".\\data\\TestData.xls", "Sheet1", 1, 4)	;
+       
+       System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());	 
+	   System.out.println(browserName);
+       driver = Browser.browserToRun(driver1, browserName);
+       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+      	   
+	   driver.get(Config.APP_URL); 
+	   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   	   
+       driver.findElement(By.xpath(".//*[@class='servicepreviewhomebanner-button']")).click();
+	   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   Thread.sleep(10000);	   
+			   
+	   /*----- Click storage_trial_button  ------*/
+/*	   if( driver.findElement(By.xpath(".//*[@id='pt1:sections:db']")).isDisplayed()){
+		   System.out.println("storage trial button present");
+//		   Utility.scrollToElement(driver, By.xpath(".//*[@id='pt1:sections:db']"));	
+		   driver.findElement(By.xpath(".//*[@id='pt1:sections:db']")).click();
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(10000);
+	   }   
+*/	   
+	   driver.findElement(By.xpath("//a[contains (@class,'cloudButton') and contains (@href,'serviceType=Storage')]")).click();
+	   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   Thread.sleep(10000);
+	   
+	   /* ----- Navigating to New  Window -----*/
+	   Set allWindowHandles = driver.getWindowHandles();
+	   int win = allWindowHandles.size();
+	   System.out.println("no. of windows open  "  + win);
+	   String window1 = (String) allWindowHandles.toArray()[1];
+	   driver.switchTo().window(window1);	
+	   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//	   driver.manage().window().maximize();
+	   Thread.sleep(10000);
+	   Utility.handleIECertificate(driver);
+	   
+	   /* ----- Provide SSO login credentials -----*/
+	   Login.ssoLogin(driver, "OPC-QA-CERT-IDC_ww@oracle.com", ssopassword);
+	   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   Thread.sleep(15000);
+	   
+	   /* System.out.println("Current Page: " +  driver.findElement( By.xpath(".//*[@id='pt1:sections:title']")).getText());
+	   Assert.assertEquals(driver.findElement(By.xpath(".//*[@id='pt1:sections:title']")).getText(), "Sign Up for a Trial Subscription to Oracle Storage Cloud Service");
+ 	   */
+	   /* ----- Fill Service Details for Request a Trial -----*/
+	   /* driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:uname::content']")).clear();
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:uname::content']")).sendKeys("OPC-QA-CERT-IDC_ww@oracle.com");
+	  
+	   select = new Select(driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:companySOC::content']")));
+	   select.selectByVisibleText("Oracle (IN)");
+	   Thread.sleep(5000);
+	   
+	   driver.findElement(By.xpath("//*[@id='pt1:sections:r1:0:pnum::content']")).clear();
+	   driver.findElement(By.xpath("//*[@id='pt1:sections:r1:0:pnum::content']")).sendKeys("1234567890");
+	   
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:fname::content']")).clear();
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:fname::content']")).sendKeys("Test");
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:lname::content']")).clear();
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:lname::content']")).sendKeys("opc");
+	   	   
+	   select = new Select(driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:userCntry::content']")));
+	   select.selectByVisibleText("India");
+	   Thread.sleep(5000);
+	 	   	   
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:add1::content']")).clear();
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:add1::content']")).sendKeys("Prestige Tech Park");
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:city::content']")).clear();
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:city::content']")).sendKeys("Bangalore");
+//	   driver.findElement(By.xpath("//input[@id='P1_STATE_PROVINCE']")).clear();
+//	   driver.findElement(By.xpath("//input[@id='P1_STATE_PROVINCE']")).sendKeys("Karnataka");
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:zip::content']")).clear();
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:zip::content']")).sendKeys("560103");
+	   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:0:sign_up_next']")).click();
+	   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   Thread.sleep(20000);
+	   */  
+	   /*----- User Verification     ------*/
+//	   System.out.println("Current Page: " +  driver.findElement( By.xpath(".//*[@id='pt1:sections:r1:1:j_id_id16pc4']/div[1]/span")).getText());
+//	   Assert.assertEquals(driver.findElement(By.xpath(".//*[@id=pt1:sections:r1:1:j_id_id16pc4']/div[1]/span")).getText(), "User Verification");
+/*	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:1:sign_up_next']/span")).click();
+ 	   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	   Thread.sleep(10000);
+*/	   
+	   /*----- Service Details  ------*/
+/*	   System.out.println("Current Page: " +  driver.findElement( By.xpath(".//*[@id='pt1:sections:r1:2:j_id_id18pc4']/span[1]")).getText());
+	   Assert.assertEquals(driver.findElement( By.xpath(".//*[@id='pt1:sections:r1:2:j_id_id18pc4']/span[1]")).getText(), "Service Details");
+	  
+	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:2:sbc1::content']")).click();
+	   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+ */
+	   /*----- 	Click Final submit button to create trial service  ------*/
+//    Un comment this when u need to create services, otherwise in every run it will request new services 
+
+//	   driver.findElement(By.xpath(".//*[@id='pt1:sections:r1:2:train_next']")).click();
+//	   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+ 
+	   
+    	 } catch(Exception err) { 
+    		 Assert.fail(err.getMessage());
+//    		 err.printStackTrace();
+    	 }
+     }
+     @AfterClass
+     public void testCleanUp()   {
+    	 /*----- Logout ------*/
+	        Utility.logOut(driver);
+    	 //  Quit -closes all the open windows
+    	 driver.quit();
+     }
+  
+ }	

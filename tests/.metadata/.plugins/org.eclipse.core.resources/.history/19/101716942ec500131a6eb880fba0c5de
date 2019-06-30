@@ -1,0 +1,299 @@
+package com.qa141.cloudui;
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.locators.CloudHomePage;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_LandingPage_16_Resources_Discover_Test extends BaseTest {
+   
+   
+Select select;
+   
+    
+
+            @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+
+               public void test(String browserName) {
+
+             
+             try{
+            	   System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());  
+        	       System.out.println(browserName);
+                 
+                   driver = Browser.browserToRun(driver1, browserName);
+                   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+
+                      
+                   driver.get(Config.APP_URL);
+                   
+                   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                   Thread.sleep(5000);
+                   driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                  
+
+                   /*--------------------------------- All Landing Page Header related Test Scripts -----------------------------------------------------*/   
+                 
+
+                   /*----- CloudHomePage ------*/   
+
+
+                   driver.findElement(CloudHomePage.HOME_LINK).click();
+                   
+                   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                   Thread.sleep(5000);
+                   driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+
+
+            //       ----- Home Page, Resource link, Blog link and validating blog page ------
+
+
+                // Navigating Home Page Link
+
+                   
+
+                   driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+                   
+                   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+     //              System.out.println("Resources 001");
+                   Thread.sleep(5000);
+                   driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+
+                   
+
+                    driver.findElement(CloudHomePage.Home_Manage_Resources_blog).click();
+                    
+                    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                    System.out.println("Navigating Blog page");
+                    Thread.sleep(5000); 
+                    driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+
+                    
+
+        //             ----- Navigating to New Window -------------------------------------------
+
+                    Set allWindowHandles = driver.getWindowHandles();
+                    int win = allWindowHandles.size();
+                    System.out.println("no. of windows open  "  + win);
+                    Thread.sleep(10000);
+                    driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                    String window1 = (String) allWindowHandles.toArray()[1];
+                    driver.switchTo().window(window1);   
+                    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//                  driver.manage().window().maximize();
+                    Thread.sleep(30000);
+                    driver.manage().timeouts().pageLoadTimeout(20000, TimeUnit.SECONDS);
+
+                    
+
+                    Assert.assertEquals(driver.findElement(CloudHomePage.Home_Manage_Resources_blog_txt) .getText(), "Oracle Cloud Solutions");
+                    System.out.println("Navigating Oracle Blog Page");
+
+                    
+//                 go back to main window
+
+                    
+   //                 System.out.println("Back to Main window");
+                    driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+                    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                    driver.navigate().refresh();
+                    Thread.sleep(15000);
+                    driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                    System.out.println("Back to Main window........");
+                    
+
+    //                ----- Home Page, Resource link, Customer link and validating Customer page ------
+
+                    
+                       driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+                       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                       Thread.sleep(10000);
+                      System.out.println("Home Page, Resource link, Customer link and validating Customer page");
+                       driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+       //                System.out.println("Customer 001" + driver.getTitle());
+
+                       
+
+                        driver.findElement(CloudHomePage.Home_Manage_Customers).click();
+                        driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                        Thread.sleep(15000); 
+                        driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+   //                     System.out.println("Customer 002");
+                        Assert.assertEquals(driver.findElement(CloudHomePage.Home_Manage_Customers_txt) .getText(), "Customer Successes");
+                        System.out.println("Navigating Oracle customer Page");
+
+                        
+
+        //                ----- Home Page, Resource link, Data link and validating Data Sheet page ------
+
+                        
+
+                           driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                           System.out.println("Navigating Home Page, Resource link, Data link and validating Data Sheet page");
+                           Thread.sleep(5000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+
+                           
+                           driver.findElement(CloudHomePage.Home_Manage_Data_Sheet).click();
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                           Thread.sleep(10000);  
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+    //                       System.out.println("Data Sheet 002");
+
+                           
+
+ 
+      //                     ----- Home Page, Resource link, Demos and Videos link ------
+                           
+                           driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                           Thread.sleep(10000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+           
+                           driver.findElement(CloudHomePage.HOME_RESOURCE_DEMOS_VIDEOS).click();
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                         
+                           Assert.assertEquals(driver.findElement(CloudHomePage.HOME_RESOURCE_DEMOS_VIDEOS_TITLE) .getText(), "General");
+     //                      System.out.println("Demos and Videos ");
+                           Thread.sleep(5000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                           
+       //                    ----- Home Page, Resource link, FAQ link ------
+                           
+                           driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                           Thread.sleep(10000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                           
+                           
+                           driver.findElement(CloudHomePage.HOME_RESOURCE_FAQ).click();
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                         
+                           Assert.assertEquals(driver.findElement(CloudHomePage.HOME_RESOURCE_FAQ_TITLE) .getText(), "General");
+     //                      System.out.println("FAQ ");
+                           Thread.sleep(5000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                           
+      //                   ----- Home Page, Resource link, Press Release link ------
+                           
+                           driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+
+                           Thread.sleep(10000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                           
+                           
+                           driver.findElement(CloudHomePage.HOME_RESOURCE_PRESS_RELEASE).click();
+
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                           Thread.sleep(5000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                           
+     //                       ----- Navigating to New Window -------------------------------------------
+
+                           Set allWindowHandles1 = driver.getWindowHandles();
+                           int win2 = allWindowHandles1.size();
+                           System.out.println("no. of windows open  "  + win2);
+                           Thread.sleep(5000);
+                           String window2 = (String) allWindowHandles1.toArray()[2];
+                           driver.switchTo().window(window2);   
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//                         driver.manage().window().maximize();
+                           Thread.sleep(20000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+
+                                                       
+
+                           Assert.assertEquals(driver.findElement(CloudHomePage.HOME_RESOURCE_PRESS_RELEASE_TXT) .getText(), "Oracle Press Releases");
+    //                       System.out.println("Navigating Oracle press relaease page");
+
+                           
+
+//                        go back to main window
+                          
+
+                           driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+
+                          
+                           driver.navigate().refresh();
+                           Thread.sleep(10000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+
+                           
+                           
+      //                     ----- Home Page, Resource link, Press Release link ------
+                           
+                           driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+                           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                           Thread.sleep(10000);
+                           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+    //                       System.out.println("White Paper001" + driver.getTitle());
+
+                           
+
+                            driver.findElement(CloudHomePage.HOME_RESOURCE_WHITEPAPERS_DATABASE).click();
+                            driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                            Thread.sleep(10000);  
+                            driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+     //                       System.out.println("Whitepaper 002");
+                            
+
+                            driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+                            driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                            Thread.sleep(10000);
+                            driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+      //                      System.out.println("Documentation 1.........." + driver.getTitle());
+                            
+                            
+                            
+                            driver.findElement(CloudHomePage.HOME_RESOURCE_DOCUMENTATION).click();
+     //                       System.out.println("Documentation 2.........." + driver.getTitle());
+                            driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                            Thread.sleep(20000);  
+                            driver.manage().timeouts().pageLoadTimeout(20000, TimeUnit.SECONDS);
+        //                    System.out.println("Documentation 3.........." + CloudHomePage.HOME_RESOURCE_DOCUMENTATION_TXT);
+                            driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                            Thread.sleep(15000);
+            //                Assert.assertEquals(driver.findElement(CloudHomePage.HOME_RESOURCE_DOCUMENTATION_TXT) .getText(), "Cloud Documentation");
+       //                     System.out.println("Navigating Documentation Page");
+                              System.out.println("Test Completed");
+                            
+                            
+                        
+                            
+                           
+ 
+
+}catch(Exception err) {
+
+        Assert.fail(err.getMessage());
+
+    }
+
+}
+
+  @AfterClass
+
+  public void testCleanUp()   {
+
+  //  Quit -closes all the open windows
+
+    driver.quit();
+
+  }
+
+    }
+
+ 

@@ -1,0 +1,130 @@
+package com.qa141.db;
+/*
+ * Scenario covered by scripts: Search Functionality
+
+ * Steps:
+ * 1. Go to Cloud URl
+ * 2. Login to to MyServices Page
+ * 3. Launch DB Service > Verify appropriate checkpoint on DB page.
+ * 4. Verify Search functionality
+ * 5. Logout.
+ */
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_DB_14_Search_Test  extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    	 
+    	 try{  
+    	System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());	 
+    	System.out.println(browserName);
+  		driver = Browser.browserToRun(driver1, browserName);
+  		driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  			  
+  		driver.get(Config.APP_URL); 
+  		driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  		Thread.sleep(5000);
+
+		/* ---------- SignIN to MyServices  ---------- */	   
+		Utility.myServicePage(driver);
+		driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		Thread.sleep(10000); 
+		    
+  	    Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+  	    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//	    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    Thread.sleep(10000); 
+  	       
+
+	   
+	    /* ----- Navigating to Service -----*/	
+  	    Utility.selectPlatformService(driver, "database");
+	    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    Thread.sleep(10000);
+    
+   
+	    String DB_URL = Utility.getDBUrl(driver, By.xpath(".//*[@id='pt1:pt2:currentTabHTMLName:ot131']/span"));
+	    driver.navigate().to(DB_URL);
+	    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    Thread.sleep(30000);
+	  
+	 // below Utility.reLogin(driver) code changes for15.3.1 
+  	  	Utility.reLogin(driver)  	;
+  	  	
+	       /* ----- Navigating to DB Cloud Services Control Window- future use -----*/
+	 /*      Set allWindowHandles = driver.getWindowHandles();
+		   int win = allWindowHandles.size();
+	       System.out.println("no. of windows open  "  + win);
+	       Thread.sleep(5000);
+	       String window1 = (String) allWindowHandles.toArray()[1];
+//	       System.out.println("windows title  "  + window1);
+	       driver.switchTo().window(window1);	
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//	       driver.manage().window().maximize();
+      Thread.sleep(20000);
+//      System.out.println("new windows title  "+ driver.getTitle());
+  */
+ 	  Assert.assertEquals("Application Builder", driver.findElement(By.xpath(".//*[@id='a_Header_menu_0i']")).getText());
+ 	  
+  	  /*--------------------------------Search Application--------------------------------------------*/
+  	  // Note:  Known issue/bug: Search functionality not working on mouse click
+  	  // logged a Bug 18424515 - 13.2:DB APEX-> SEARCH IS NOT WORKING ON MOUSE CLICK.  
+	      
+	       System.out.println("Search for application.");
+	       
+	       driver.findElement(By.xpath(".//*[@id='P0_SEARCH']")).click();
+	       Thread.sleep(1000);
+	       driver.findElement(By.xpath(".//*[@id='P0_SEARCH']")).clear();
+	       Thread.sleep(1000);
+	       
+	       driver.findElement(By.xpath(".//*[@id='P0_SEARCH']")).sendKeys("sample");
+	     
+	       //driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       //driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       //Thread.sleep(10000);
+	     
+	       //driver.findElement(By.xpath(".//*[@id='P0_SEARCH']")).sendKeys(Keys.ENTER);
+	       driver.findElement(By.id("P0_SEARCH")).sendKeys(Keys.ENTER);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       
+	       System.out.println("Checkpoint:- " + driver.findElement(By.xpath(".//*[@id='29098015502335205']/tbody/tr[2]/td[3]")).getText());
+	       Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='29098015502335205']/tbody/tr[2]/td[3]")).getText().contains("Sample Database Application"));
+	       System.out.println("Test Completed:-  " +  this.getClass().getSimpleName());	
+	       
+    	 } catch(Exception err) { 
+        	 Assert.fail(err.getMessage());
+         }
+      }
+      
+         	@AfterClass
+         	public void testCleanUp()   {
+         		driver.manage().deleteAllCookies();
+         		Utility.logOut(driver);
+         		//  Quit -closes all the open windows
+         		driver.quit();
+         	}
+    	   
+    }	

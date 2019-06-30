@@ -1,0 +1,537 @@
+package com.MigDC1.StoreGSIIntegration;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+import com.safc.configuration.DbConnection;
+
+public class Notification_test extends BaseTest{
+	
+	String OrderNo = new SimpleDateFormat("yyyyMMddHHmmss").format(Calendar.getInstance().getTime());
+    String OrderNoText = "Order ID: " + this.OrderNo;
+    String orgId = "1611" + this.OrderNo.substring(10);
+    String SubscriptionID = this.OrderNo.substring(6);
+    String servicename = "JAVAMB" + this.OrderNo.substring(6, 9);
+    String getemppwd = "";
+    String tmpPwd = "";
+    String DomainID = String.valueOf(this.servicename) + this.OrderNo.substring(11);
+    String serviceinstanceurl = "";
+    String strToRemovepaidordermailsubject = "Temporary Password: ";
+    String strToRemoveThirdKeyWord = "Service Instance URL: ";
+    String strToRemoveFirstKeyWordfirstpart = "To complete your order, follow the link ";
+    String strToRemoveFirstKeyWordsecondpart = "and provide the requested information.";
+        
+    //wait time intervals
+    int m5wait = 10000;
+    int m2wait = 240000;
+    int m1wait = 60000;
+    int s2wait = 2000;
+    int s1wait = 1000;
+    int s5wait = 5000;
+    int s15wait = 15000;
+    int m3wait = 180000;
+    String hostname = "javamb";
+    String permanentpassword = "Opcqa@456";
+    String username = "c9qa-gsiintg_ww@oracle.com";
+    String ssopassword = "Gsiintg1";
+    String firstkeyword = "Welcome to Oracle Cloud. Start your service.";
+    String paidordermailsubject = "Welcome to Oracle Cloud. Your Oracle Public Cloud Services are ready for use.  Some services may require additional configuration and provisioning steps.";
+    String thirdkeyword = "Action Required: Your new Application Builder Cloud Service standard offering instance in Identity Domain ##DOAMINID## is ready.";
+    String protocol = "imap";
+    String mailhost = "stbeehive.oracle.com";
+    String port = "993";
+    String setupAccountURL = "http://##HOSTNAME##:7797/mycloud/faces/setupAccount.jspx?orderId=##ORGID##_##ORDERNO##";
+    //String payloadurl = "";
+    String changeAccountPwdURL = "http://##HOSTNAME##:7897/mycloud/##DOAMINID##/faces/dashboard.jspx";
+    String seleniumgrid = "http://10.232.128.46:4444/wd/hub";
+    String browser = "";
+    String firefoxversion = "";
+    String autocomplete = "on";
+    WebDriver driver;
+	 
+    protected String WORK_DIR = System.getenv("WORKDIR");    
+    protected String AUTO_ENV_PROP_FILE = WORK_DIR + "/autoEnv.properties";    
+    protected String PAYLOAD_FILE = WORK_DIR +"/payloadTemplate.xml";    
+    protected String MAILS_DIR = WORK_DIR +"/mails/";    
+    protected String SCREEN_DIR = WORK_DIR +"/capture_screens/";    
+    protected String ERR_SCREEN_DIR = WORK_DIR +"/test-output/";    
+    protected static int counter = 1;
+    protected String DEFAULT_URL = "http://www.oracle.com";
+    
+    
+    /**
+     * This method prints begin and end statements for clear trace of execution
+     */
+    public void logMethodTrace(String logMsg) {
+        logger("-----------------------------------------");
+        System.out.println(logMsg);
+        logger("-----------------------------------------");
+    }
+
+
+    /**
+     * This method prints output
+     */
+    public void logger(String logMsg) {
+        System.out.println(logMsg);
+    }
+
+
+    /**
+     * This method makes current thread sleep for the given interval
+     */
+    public void waitTime(int waitForMs) {
+        try {
+            Thread.sleep(waitForMs);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     *
+     * This method fetches required values from the properties file and
+     * sets relevant preferences for firefoxProfile & launch it
+     *
+     */
+   /* @BeforeTest
+    public void openbrowser() {
+        {
+            FileInputStream input;
+            logMethodTrace("Entered into CimOrderWithAutoCompleteOn as with autoComplete Parameter");
+            logMethodTrace("CimOrder:openbrowser -- BEGIN");
+            
+            Properties prop = new Properties();
+            input = null;
+            try {
+                logger("Location of WORK DIR : "+WORK_DIR);
+            	input = new FileInputStream(AUTO_ENV_PROP_FILE);
+                prop.load(input);
+                this.seleniumgrid = prop.getProperty("seleniumgrid").trim();
+                this.browser = prop.getProperty("browser").trim();
+                this.firefoxversion = prop.getProperty("firefoxversion").trim();
+                this.permanentpassword = prop.getProperty("permanentpassword").trim();
+                this.username = prop.getProperty("username").trim();
+                this.ssopassword = prop.getProperty("ssopassword").trim();
+                this.firstkeyword = prop.getProperty("firstkeyword").trim();
+                this.paidordermailsubject = prop.getProperty("secondkeyword").trim();
+                this.thirdkeyword = prop.getProperty("thirdkeyword").trim();
+                this.protocol = prop.getProperty("protocol").trim();
+                this.mailhost = prop.getProperty("mailhost").trim();
+                this.port = prop.getProperty("port").trim();
+                this.m5wait = Integer.parseInt(prop.getProperty("m5wait"));
+                this.m2wait = Integer.parseInt(prop.getProperty("m2wait"));
+                this.autocomplete = prop.getProperty("autocomplete").trim();
+              //  this.payloadurl = prop.getProperty("payloadurl");
+                logger("Values fetched in openbrowser() --> \n\t seleniumgrid: " + this.seleniumgrid +
+                       "\n\t browser: " + this.browser + "\n\t firefoxversion: " + this.firefoxversion +
+                       "\n\t hostname: " + this.hostname + "\n\t permanentpassword: " + this.permanentpassword +
+					   "\n\t autocomplete: " + this.autocomplete +
+                       "\n\t username: " + this.username + "\n\t m5wait: " + this.m5wait +
+                       "\n\t paidordermailsubject: " + this.paidordermailsubject + "\n\t setupAccountURL: " +
+                       this.setupAccountURL + "\n\t payloadurl: " + this.payloadurl + "\n\t changeAccountPwdURL: " +
+                       this.changeAccountPwdURL + "\n\t strToRemoveThirdKeyWord: " + this.strToRemoveThirdKeyWord);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("network.proxy.http", "www-proxy.us.oracle.com");
+        profile.setPreference("network.proxy.http_port", 80);
+        profile.setPreference("network.proxy.share_proxy_settings", true);
+        profile.setPreference("network.proxy.ssl", "www-proxy.us.oracle.com");
+        profile.setPreference("network.proxy.ssl_port", 80);
+        profile.setPreference("network.proxy.type", 4);
+        profile.setPreference("network.proxy.no_for",
+                              "localhost,127.0.0.1,.oracle.com,*.us.oracle.com,*.oraclecorp.com");
+        //profile.setPreference(FirefoxProfile.ALLOWED_HOSTS_PREFERENCE,
+                                  //    "localhost,127.0.0.1,.oracle.com,*.us.oracle.com,*.oraclecorp.com,localhost.localdomain,loghost");
+        profile.setAcceptUntrustedCertificates(true);
+        profile.setAssumeUntrustedCertificateIssuer(true);
+        try {
+            DesiredCapabilities capability = DesiredCapabilities.firefox();
+            //capability.setBrowserName(this.browser);
+            //capability.setVersion(this.firefoxversion);
+            //capability.setPlatform(Platform.LINUX);
+            capability.setCapability(FirefoxDriver.PROFILE, profile);
+            try {
+                logger("Selenium Grid: " + this.seleniumgrid);
+                this.driver = new RemoteWebDriver(new URL(this.seleniumgrid), capability);
+                this.driver.get(DEFAULT_URL);
+                this.driver.manage().window().maximize();
+                logger("Current Browser Title: "+ this.driver.switchTo().window(this.driver.getWindowHandle()).getTitle());
+                logger("Browser opened successfully!");
+            } catch (MalformedURLException e1) {
+                e1.printStackTrace();
+            }
+            waitTime(this.s1wait);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        logMethodTrace("CimOrder:openbrowser -- END");
+    }
+    */
+	/**
+     * Method to setup Cloud Service Account
+     */
+    @Test(priority = 2)
+    public void cloudServiceAccountSetup() {
+        logMethodTrace("Checking for the autocomplete status - CimOrder:cloudServiceAccountSetup() -- BEGIN");
+        if (this.autocomplete.matches("false")) { //wait for 10 mins
+            String welcomeMailContent = "";
+            logger("Service Setup Started");
+            logger("Waiting for mails");
+            try {
+                String getAccountSetupURL = "";
+                String strtoremove = "";
+                logger(this.firstkeyword);
+                logger(this.OrderNoText);
+                int i = 0;
+                while (i < (this.m5wait / 120000)) {
+                    i++;
+                    // wait for the mail content for 10 mins and if not error out. Each 2 mins it should be checked.
+                    welcomeMailContent =
+                        this.getMailContentMatchingWithSubjectAndBodyText(this.mailhost, this.port, this.username,
+                                                                          this.ssopassword, this.OrderNoText,
+                                                                          this.firstkeyword);
+                    if (welcomeMailContent != "") {
+                        List<String> extractedUrls = extractUrls(welcomeMailContent);
+                        for (String url : extractedUrls) {
+                            logger("URL: "+url);
+                            if (!url.contains("setupAccount.jspx"))
+                                continue;
+                            getAccountSetupURL = url;
+                            break;
+                        }
+                        logger("welcome Mail Content: "+welcomeMailContent);
+                        logger("Mail Search Completed in --> " + i * 2 + " Minutes");
+                        break;
+                    } else {
+                        logger("Mail hasn't arrived yet.... waiting --->  " + i * 2 + " Minutes");
+                        waitTime(120000);
+                        this.driver.get(DEFAULT_URL);
+                    }
+                }
+                if (getAccountSetupURL.length() < 2) {
+                    logger("Setup mail not arrived in expected time period.");
+                    Assert.fail("Setup URL is not valid.");                    
+                }
+                if (getAccountSetupURL.endsWith(".")) {
+                    logger(""+getAccountSetupURL.substring(getAccountSetupURL.length() - 1));
+                    getAccountSetupURL = getAccountSetupURL.substring(0, getAccountSetupURL.length() - 1);
+                }
+                logger("cloudServiceAccountSetup Started");
+                logger("Account Setup URL is : " + getAccountSetupURL);
+                logger("UserName: " + this.username + "Pwd: " + this.ssopassword);
+
+                this.driver.get(getAccountSetupURL);
+				waitTime(this.s15wait);
+                this.driver.findElement(By.id((String) "sso_username")).sendKeys(new CharSequence[] { this.username });
+                this.driver.findElement(By.id((String) "ssopassword")).sendKeys(new CharSequence[] {
+                                                                                this.ssopassword });
+                //takeScreenShot("cloudServiceAccountSetup_before_sign_in");
+                this.driver.findElement(By.linkText((String) "Sign In")).click();
+                logger("Logged into Account Setup Page");
+                waitTime(this.s2wait);
+                //takeScreenShot("cloudServiceAccountSetup_after_sign_in");
+                //commented as observing error around domain field when aplbtn clicked first
+               // this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:aplbtn")).click();
+                this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:newcreditaccount::content")).clear();
+                this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:newcreditaccount::content")).sendKeys(new CharSequence[] {
+                                                                                                                    this.DomainID });
+                waitTime(this.s2wait);
+ 				//takeScreenShot("cloudServiceAccountSetup_after_domain_id_entry");
+                logger("Logged into Account Setup Page");
+                this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:admin-firstname::content")).click();
+                this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:admin-firstname::content")).clear();
+                this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:admin-firstname::content")).sendKeys(new CharSequence[] {
+                                                                                                                   "C9QAABCS First" });
+                waitTime(this.s2wait);
+                //this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:admin-firstname::content")).clear();
+                this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:admin-lastname::content")).click();
+                this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:admin-lastname::content")).clear();
+                this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:admin-lastname::content")).sendKeys(new CharSequence[] {
+                                                                                                                  "C9QAABCS Last" });
+                waitTime(this.s2wait);
+                logger(this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:aplbtn")).getText());
+                //takeScreenShot("cloudServiceAccountSetup_before_apl_btn_clk");
+                this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:aplbtn")).click();
+                logger("Clicked on Assign Account Button to Activate Domain ID --> " + this.DomainID );
+                waitTime(this.s2wait);
+               // takeScreenShot("cloudServiceAccountSetup_after_apl_btn_clk");
+                boolean isCloseButtonExist =
+                    this.driver.findElements(By.id((String) "pt1:sections:r1:1:pt1:closebtn")).size() != 0;
+                if (isCloseButtonExist) {
+                	//takeScreenShot("cloudServiceAccountSetup_before_close_btn_clk");
+                    this.driver.findElement(By.id((String) "pt1:sections:r1:1:pt1:closebtn")).click();
+                    logger("Close Button has displayed and clicked");
+                    //takeScreenShot("cloudServiceAccountSetup_after_close_btn_clk");
+                } else {
+                    logger("Oracle Public Cloud Services Account Setup has some issue.Setup has failed for Domain ID --> " + this.DomainID + ". You may not get mails.");
+                    Assert.fail("Oracle Public Cloud Services Account Setup has failed for Domain ID" + this.DomainID);
+                   // takeScreenShot("cloudServiceAccountSetup_assert_fail");
+                }
+                waitTime(this.m3wait);
+                logger("cloudServiceAccountSetup Completed");
+               //takeScreenShot("cloudServiceAccountSetup_setupcompleted");
+                this.driver.get(DEFAULT_URL);
+                //this.driver.close();
+                waitTime(this.m3wait);
+               // takeScreenShot("cloudServiceAccountSetup_after_wait");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            logger("Auto complete status is ON");
+        }
+
+        logMethodTrace("Read temp password from mail Completed - CimOrder:cloudServiceAccountSetup() -- END");
+    }
+    
+
+    /**
+     * Method to read temporary password from the received mail
+     */
+    @Test(priority = 4, dependsOnMethods = { "cloudServiceAccountSetup" })
+    public void readTempPasswordFromMail() throws Exception {
+       logMethodTrace("Started readTempPasswordFromMail - CimOrder:readTempPasswordFromMail() - BEGIN");
+       
+       logger("Paid Order Mail Subject: " + this.paidordermailsubject + " \n String To Remove Paid Order Mail Subject: " +this.strToRemovepaidordermailsubject);
+            
+    	logger("Going to enter the loop for " + this.m5wait +" msecs");
+    	int waitInterval = this.m5wait; 
+         
+        if(this.autocomplete.matches("true"))
+         waitInterval = waitInterval+1200000;
+         
+        logger("auto complete is: "+ this.autocomplete+ "--> \n\t waitInterval is: "+waitInterval);
+        
+    	boolean assertTrue = false;
+    	int j = 0;
+        while (j < (waitInterval / 120000)) {
+            j++;
+            this.getemppwd =
+                this.searchmailfortext(this.mailhost, this.port, this.username, this.ssopassword, this.OrderNoText,
+                                       this.paidordermailsubject, this.strToRemovepaidordermailsubject);
+            if (this.getemppwd == "") {
+                logger("Password mail hasn't arrived yet..... waiting --> " + j * 2 + " minutes");
+                this.driver.get(DEFAULT_URL);
+                waitTime(120000);
+                assertTrue = true;
+            } else {
+                logger("Mail Search Completed for password --> " + this.getemppwd + "  ------>  " + j * 2 + " Minutes");
+                logger("The details string is : " + this.getemppwd);
+                String[] parts = this.getemppwd.split("###");
+                this.tmpPwd = parts[0];
+                this.DomainID = parts[1];
+                this.changeAccountPwdURL = parts[2];
+                assertTrue = false;
+               // takeScreenShot("mail_domain_id");
+                break;
+            }
+        }
+        logger("Values fetched in cloud Service Account Setup --> \n\t changeAccountPwdURL: " +
+        		this.changeAccountPwdURL + "\n\t getemppwd: " + this.tmpPwd + "\n\t Domain ID: " + this.DomainID +
+        		"\n\t Permanent Password: " + this.permanentpassword);
+        
+        if (assertTrue)
+            Assert.fail("Password mail hasn't arrived yet. Unable to get the temporary password");
+        
+      logMethodTrace("Completed readTempPasswordFromMail - CimOrder:readTempPasswordFromMail() - END");
+    }
+
+    /**
+     * Method to change/reset cloud service account password
+     */
+    @Test(priority = 5, dependsOnMethods = { "readTempPasswordFromMail" })
+    public void ChangeAccountPassword() throws InterruptedException {
+    	
+        logMethodTrace("Entered into Change Account password Test - CimOrder:ChangeAccountPassword() -- BEGIN");
+        logger("Values in-hand to Change Account Password --> \n\t Temp password: " + this.tmpPwd +
+               " \n\t Domain ID: " + this.DomainID + " \n\t Change Account Password URL: " + this.changeAccountPwdURL);
+        waitTime(this.s2wait);
+		try {
+			//takeScreenShot("ChangeAccountPassword_before_capurl");
+	        this.driver.get(this.changeAccountPwdURL);
+	        waitTime(this.s15wait);
+			//takeScreenShot("ChangeAccountPassword_after_capurl");
+	        boolean isIdentityDomainFieldExist = this.driver.findElements(By.id((String) "tenantDisplayName")).size() != 0;
+	        if (isIdentityDomainFieldExist) {
+	            this.driver.findElement(By.id((String) "tenantDisplayName")).clear();
+	            this.driver.findElement(By.id((String) "tenantDisplayName")).sendKeys(new CharSequence[] { this.DomainID });
+				//takeScreenShot("ChangeAccountPassword_tenantDisplay_before_sign_in_clk");
+	            this.driver.findElement(By.id((String) "signin")).click();
+				//takeScreenShot("ChangeAccountPassword_tenantDisplay_after_sign_in_clk");
+	        }
+	        this.driver.findElement(By.id((String) "username")).clear();
+	        this.driver.findElement(By.id((String) "username")).sendKeys(new CharSequence[] {"c9qa-gsiintg_ww@oracle.com" });
+	        this.driver.findElement(By.id((String) "password")).clear();
+	        this.driver.findElement(By.id((String) "password")).sendKeys(new CharSequence[] { this.tmpPwd });
+			//takeScreenShot("ChangeAccountPassword_credentials_before_sign_in_clk");
+	        this.driver.findElement(By.id((String) "signin")).click();
+			//takeScreenShot("ChangeAccountPassword_credentials_after_sign_in_clk");
+        
+	        waitTime(this.s15wait);
+			//takeScreenShot("ChangeAccountPassword_pwd_screen");
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it6::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it6::content")).sendKeys(new CharSequence[] {
+	                                                                                                   this.tmpPwd });
+
+	        waitTime(this.s1wait);
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it3::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it3::content")).sendKeys(new CharSequence[] {
+	                                                                                                   this.permanentpassword });
+	        waitTime(this.s2wait);
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it2::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it2::content")).sendKeys(new CharSequence[] {
+	                                                                                                   this.permanentpassword });
+	        waitTime(this.s1wait);
+	        new Select(this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:soc1::content"))).selectByVisibleText("What is your mother's maiden name?");
+
+	        waitTime(this.s1wait);
+	        this.driver.findElement(By.cssSelector((String) "option[title=\"What is your mother's maiden name?\"]")).click();
+
+	        waitTime(this.s1wait);
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it4::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it4::content")).sendKeys(new CharSequence[] {
+	                                                                                                   "welcome1" });
+	        waitTime(this.s1wait);
+	        new Select(this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:soc2::content"))).selectByVisibleText("What is the name of your pet?");
+
+	        waitTime(this.s1wait);
+	        this.driver.findElement(By.xpath((String) "(//option[@value='1'])[2]")).click();
+
+	        waitTime(this.s1wait);
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it1::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it1::content")).sendKeys(new CharSequence[] {
+	                                                                                                   "welcome1" });
+	        waitTime(this.s1wait);
+	        new Select(this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:soc3::content"))).selectByVisibleText("What is the city of your birth?");
+
+	        waitTime(this.s1wait);
+	        this.driver.findElement(By.xpath((String) "(//option[@value='2'])[3]")).click();
+
+	        waitTime(this.s1wait);
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it5::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it5::content")).sendKeys(new CharSequence[] {
+	                                                                                                   "welcome1" });
+	        waitTime(this.s1wait);
+	        this.driver.findElement(By.id((String) "pt1:_d_reg:region0:0:sf44:it5::content")).sendKeys(new CharSequence[] {
+	                                                                                                   Keys.RETURN });
+			//takeScreenShot("ChangeAccountPassword_after_key_return");
+	        waitTime(this.s15wait);
+	        logger("Account Password Changed to Permanent Password");
+
+	        boolean isLanguageNameFieldexists =
+	            this.driver.findElements(By.id((String) "pt1:header:h:fdc_selectPrefLang2::content")).size() != 0;
+	        logger("Language Selection window Exists : " + isLanguageNameFieldexists);
+	         waitTime(this.s15wait);
+			 //takeScreenShot("ChangeAccountPassword_lang_selection");
+			if (isLanguageNameFieldexists) {
+	            new Select(this.driver.findElement(By.id((String) "pt1:header:h:fdc_selectPrefLang2::content"))).selectByVisibleText("English");
+	            this.driver.findElement(By.id((String) "pt1:header:h:fok")).click();
+				// takeScreenShot("ChangeAccountPassword_eng_lang_clicked");
+	        }
+	        waitTime(this.s15wait);
+			//takeScreenShot("ChangeAccountPassword_eng_lang_selected");
+	        logger("-----------------------------------------");
+	        logger("Create Instance part Started");
+	        logger("-----------------------------------------");
+
+	        waitTime(this.s5wait);
+	        this.driver.findElement(By.id((String) "pt1:sections:lv-db:0:dbsvc-create-instance")).click();
+
+	        waitTime(this.s1wait);
+			//takeScreenShot("ChangeAccountPassword_create_instance");
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:iname::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:iname::content")).sendKeys(new CharSequence[] {
+	                                                                                                 this.servicename });
+	        waitTime(this.s1wait);
+			//takeScreenShot("ChangeAccountPassword_create_instance_after_domain_id");
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:email::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:email::content")).sendKeys(new CharSequence[] {
+	                                                                                                 this.username });
+	        waitTime(this.s1wait);
+			//takeScreenShot("ChangeAccountPassword_create_instance_after_email");
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:username::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:username::content")).sendKeys(new CharSequence[] {
+	                                                                                                    this.username });
+	        waitTime(this.s1wait);
+			//takeScreenShot("ChangeAccountPassword_create_instance_after_uname");
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:fn::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:fn::content")).sendKeys(new CharSequence[] {
+	                                                                                              "c9qa" });
+	        waitTime(this.s1wait);
+			//takeScreenShot("ChangeAccountPassword_create_instance_after_fn");
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:ln::content")).clear();
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:ln::content")).sendKeys(new CharSequence[] {
+	                                                                                              "abcs" });
+	        waitTime(this.s1wait);
+			//takeScreenShot("ChangeAccountPassword_before_nxbtn_click");
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:0:pt1:nxbtn")).click();
+		   // takeScreenShot("ChangeAccountPassword_after_nxbtn_click");
+
+	        waitTime(this.s15wait);
+			//takeScreenShot("ChangeAccountPassword_before_account_btn_click");
+	        this.driver.findElement(By.id((String) "pt1:sections:r1:1:pt1:actbtn")).click();
+        
+	        waitTime(this.s15wait);  
+			//takeScreenShot("ChangeAccountPassword_after_account_btn_click");
+	        logger("-----------------------------------------");
+	        logger("Created a new Instance. Go and Check your Mail");
+	        logger("-----------------------------------------");
+	        logger("-----------------------------------------");
+	        logger("Enjoy your ABCS Service");
+	        logger("-----------------------------------------");
+	        waitTime(this.s1wait);
+			//takeScreenShot("ChangeAccountPassword_abcs_instance_created");
+			}catch (Exception e) {
+	        	e.printStackTrace();
+        }
+        //this.driver.close();
+        logMethodTrace("Entered into Change Account password Test - CimOrder:ChangeAccountPassword() -- END");
+    
+}
+}

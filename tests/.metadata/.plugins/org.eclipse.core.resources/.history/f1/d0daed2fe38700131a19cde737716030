@@ -1,0 +1,127 @@
+package com.qa132.java;
+
+/* Test case to verify the information displayed in the UI
+ * Login to Java console page 
+ * Verify Home page is displayed using headerName.
+ * Java console page is displayed using headerName on click of Manage .
+ * verify log message is displayed using headerName 
+ * verify Deploy application option is displayed using headerName 
+ * verify username is displayed in the menu
+ * verify Table view page of Response and load  is displayed
+ * Verify Table view page of Resource usage is displayed
+ */
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.locators.CloudHomePage;
+import com.opc.locators.CloudMyServicePage;
+import com.opc.locators.CloudSelectSignInPage;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_Java_18_Functionality_Test extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	
+  
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    	 try{   
+    		 
+	  		   System.out.println(browserName);
+			   driver = Browser.browserToRun(driver1, browserName);
+			   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			   
+			   /* ----- Launch C9 site -----*/
+			   driver.get(Config.APP_URL); 
+			   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			   Thread.sleep(10000);
+				  
+			   /* ---------- SignIN to MyServices  ---------- */	   
+			   Utility.myServicePage(driver);
+			 
+			   
+			   /* ----- Provide Login Credentials -----*/	
+		       Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+		       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		       Thread.sleep(10000);
+		       
+		       
+			     /*----- Verify Header on My services page  ------*/
+		      System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText());
+	          Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText().contains("My Services"), "My Services");
+		    
+		 	  
+			  /* ----- Navigating to Service -----*/	
+	  	      Utility.selectPlatformService(driver, "java");
+	  	      driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  	      Thread.sleep(10000);
+	
+			  driver.findElement(By.xpath(".//*[@id='pt1:pt2:cb2']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			 
+			  /* ----- Navigating to Java Cloud Services Control Window -----*/
+			  Set allWindowHandles = driver.getWindowHandles();
+			  int win = allWindowHandles.size();
+			  System.out.println("no. of windows open  "  + win);
+			  String window1 = (String) allWindowHandles.toArray()[2];
+			  driver.switchTo().window(window1);	
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  driver.manage().window().maximize();
+			  Thread.sleep(20000);
+		       
+			   /*--Verify Java service console page---*/		       
+		       System.out.println(driver.findElement(By.xpath(".//*[@id='emT:ch_fn_txt']")).getText());			  
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='emT:ch_fn_txt']")).getText().contains(""),"Java Cloud Services Control");
+			  
+			  /*-- Select Application---*/
+			  Utility.selectApplicationName(driver, "welcome-app");
+			  
+			  
+			  /*-- Run Application---*/
+			  Utility.runApplicationName(driver, "welcome-app");
+			  
+			  //Go back to java service page	       
+		       System.out.println(driver.findElement(By.xpath(".//*[@id='emT:sdkbc:bc_MODEL_aas_javaservice_home']")).getText());
+		       driver.findElement(By.xpath(".//*[@id='emT:sdkbc:bc_MODEL_aas_javaservice_home']")).click();
+		       Thread.sleep(5000);
+			   
+			  
+			  /*-- Stop Application---*/
+			  // Utility.stopApplicationName(driver, "welcome-app");
+		       
+		       //Navigate to the pop up
+		      
+		       //Select option no to the pop up
+		       //driver.findElement(By.xpath(".//*[@id='emT:sdkbc:bc_MODEL_aas_javaservice_home']")).click();
+		       //Thread.sleep(5000);
+			  
+			  /*-- Start Application---*/
+	             
+			  //Utility.startApplicationName(driver, "welcome-app");
+			  
+        } catch(Exception err) { 
+    	 Assert.fail(err.getMessage());   
+    	 } 
+  }
+   @AfterClass
+   public void testCleanUp()   {
+   //  Quit -closes all the open windows
+     //driver.quit();
+   }
+	   
+}

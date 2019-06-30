@@ -1,0 +1,104 @@
+package com.qa141.db;
+/*
+ * Scenario covered by scripts: DBService link
+ * Steps:
+ * 1. Go to Cloud URl
+ * 2. Login to to MyServices Page
+ * 3. Verify DBService link > Use DB url from my service page to launch DB Service > Verify appropriate checkpoint on DB page.
+ * 4. Logout.
+ */
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.android.AndroidDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.locators.CloudHomePage;
+import com.opc.locators.CloudSelectSignInPage;
+import com.safc.configuration.BaseTest;
+import com.opc.util.Utility;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_DB_09_DBService_link_Test extends BaseTest{
+	Select select;
+	  
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    	 try{  
+  		   System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());	 
+ 	  	   System.out.println(browserName);
+  		   driver = Browser.browserToRun(driver1, browserName);
+  		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  				  
+  		   driver.get(Config.APP_URL); 
+  		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+
+  		   
+		   /* ---------- SignIN to MyServices  ---------- */	   
+		   Utility.myServicePage(driver);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       
+		   /* ----- Providing Login Credentials -----*/	
+	       Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(5000);
+	       
+	       /* ---------- Verify MYservice Header ---------- */
+           Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:header:h:msvc-app-name']")).getText().contains("My Services"), "My Services");
+           
+           Utility.JETmyServiceNewUI(driver);
+	    	
+		 /* ----- Navigating to Service -----*/	
+	       Utility.selectPlatformService(driver, "database");
+  	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  	     driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  	     Thread.sleep(10000);
+ 	     
+  	       String DB_URL = Utility.getDBUrl(driver, By.xpath(".//*[@id='pt1:pt2:currentTabHTMLName:ot131']/span"));
+  	       driver.navigate().to(DB_URL);
+  	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  	     driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  	     Thread.sleep(30000);
+	       
+  	// below Utility.reLogin(driver) code changes for15.3.1 
+	  	  	Utility.reLogin(driver)  	;
+	  	  	
+	       Assert.assertEquals("Application Builder", driver.findElement(By.xpath(".//*[@id='a_Header_menu_0i']")).getText());
+       	      
+	       /*----- Launch Application Builder ------*/
+	       driver.findElement(By.xpath(".//*[@id='a_Header_menu_0i']")).click();
+	       
+	       /*----- Logout ------*/
+	      // driver.findElement(By.xpath(".//*[@id='page-header']/div[1]/div/a[2]/span")).click();
+	       System.out.println("Test Completed:-  " +  this.getClass().getSimpleName());	
+	   
+  } catch(Exception err) { 
+  	 Assert.fail(err.getMessage());
+   }
+}
+ @AfterClass
+ public void testCleanUp()   {
+	 Utility.logOut(driver);
+ //  Quit -closes all the open windows
+driver.quit();
+ }
+	   
+}	

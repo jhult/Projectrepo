@@ -1,0 +1,44 @@
+!SESSION 2016-04-09 23:32:22.103 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_73
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-04-09 23:33:44.920
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pchittia'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2016-04-09 23:37:29.761 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_73
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product -data file:/C:/SAFc/ -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-04-09 23:38:01.508
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\pchittia'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.testng.eclipse 1 0 2016-04-09 23:40:30.991
+!MESSAGE [TestNGLaunchConfigurationDelegate] Launching:
+  Classpath: C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\testng-remote.jar C:\SAFc\tests\OPC\bin C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\testng.jar C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\jcommander.jar C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\bsh-2.0b4.jar C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\snakeyaml.jar C:\SAFc\tests\OPC\lib\poi-3.8-20120326.jar C:\SAFc\tests\OPC\lib\javax.mail.jar C:\SAFc\tests\OPC\lib\safc-3.0.jar C:\SAFc\tests\OPC\lib\selenium-server-standalone-2.39.0.jar C:\SAFc\tests\OPC\lib\testng-6.9beta.jar C:\SAFc\tests\OPC\lib\ojdbc14-1.0.jar
+  VMArgs:    -ea
+  Class:     org.testng.remote.RemoteTestNG
+  Args:      -serport 60547 -protocol json -d C:\SAFc\tests\OPC\test-output C:\Users\pchittia\AppData\Local\Temp\testng-eclipse-1041361805\testng-customsuite.xml
+java -ea -classpath C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\testng-remote.jar:C:\SAFc\tests\OPC\bin:C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\testng.jar:C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\jcommander.jar:C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\bsh-2.0b4.jar:C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\snakeyaml.jar:C:\SAFc\tests\OPC\lib\poi-3.8-20120326.jar:C:\SAFc\tests\OPC\lib\javax.mail.jar:C:\SAFc\tests\OPC\lib\safc-3.0.jar:C:\SAFc\tests\OPC\lib\selenium-server-standalone-2.39.0.jar:C:\SAFc\tests\OPC\lib\testng-6.9beta.jar:C:\SAFc\tests\OPC\lib\ojdbc14-1.0.jar org.testng.remote.RemoteTestNG -serport 60547 -protocol json -d C:\SAFc\tests\OPC\test-output C:\Users\pchittia\AppData\Local\Temp\testng-eclipse-1041361805\testng-customsuite.xml
+
+!ENTRY org.testng.eclipse 1 0 2016-04-10 08:44:09.183
+!MESSAGE [TestNGLaunchConfigurationDelegate] Launching:
+  Classpath: C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\testng-remote.jar C:\SAFc\tests\OPC\bin C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\testng.jar C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\jcommander.jar C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\bsh-2.0b4.jar C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\snakeyaml.jar C:\SAFc\tests\OPC\lib\poi-3.8-20120326.jar C:\SAFc\tests\OPC\lib\javax.mail.jar C:\SAFc\tests\OPC\lib\safc-3.0.jar C:\SAFc\tests\OPC\lib\selenium-server-standalone-2.39.0.jar C:\SAFc\tests\OPC\lib\testng-6.9beta.jar C:\SAFc\tests\OPC\lib\ojdbc14-1.0.jar
+  VMArgs:    -ea
+  Class:     org.testng.remote.RemoteTestNG
+  Args:      -serport 58945 -protocol json -d C:\SAFc\tests\OPC\test-output C:\Users\pchittia\AppData\Local\Temp\testng-eclipse--1675330716\testng-customsuite.xml
+java -ea -classpath C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\testng-remote.jar:C:\SAFc\tests\OPC\bin:C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\testng.jar:C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\jcommander.jar:C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\bsh-2.0b4.jar:C:\Users\pchittia\Downloads\eclipse\plugins\org.testng.eclipse_6.9.11.201604020423\lib\snakeyaml.jar:C:\SAFc\tests\OPC\lib\poi-3.8-20120326.jar:C:\SAFc\tests\OPC\lib\javax.mail.jar:C:\SAFc\tests\OPC\lib\safc-3.0.jar:C:\SAFc\tests\OPC\lib\selenium-server-standalone-2.39.0.jar:C:\SAFc\tests\OPC\lib\testng-6.9beta.jar:C:\SAFc\tests\OPC\lib\ojdbc14-1.0.jar org.testng.remote.RemoteTestNG -serport 58945 -protocol json -d C:\SAFc\tests\OPC\test-output C:\Users\pchittia\AppData\Local\Temp\testng-eclipse--1675330716\testng-customsuite.xml

@@ -1,0 +1,153 @@
+ package com.qa132.cloudui;
+  
+ /* Test case to verify chatnow links from cloud home page
+  * Steps
+  * lanuch application 
+  * Try to start with invalid input data and verify the error message
+  * Try to start with valid input data and verify user able to char
+  * End the session
+  */
+ 
+
+ import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+import com.safc.qa131.*;
+import com.opc.common.Browser;
+import com.opc.locators.CloudHomePage;
+import com.opc.util.Utility;
+
+public class C9_CloudUI_03_Chatnow_Test extends BaseTest  {
+   
+Select select;
+
+   
+
+    @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+
+       public void test(String browserName) {
+     try{
+
+    	   System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());
+	       System.out.println(browserName);
+	       
+           driver = Browser.browserToRun(driver1, browserName);
+           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+             
+
+           driver.get(Config.APP_URL);
+           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+           driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+    	   Thread.sleep(30000);
+    	   
+          
+           
+          /*----- Click Chat Now ------*/      
+    	   System.out.println( driver.findElement(By.xpath("//div[contains (@data-trackas,'side-tab') and contains (@title,'Chat Now')]/a/div")).getText());
+    	   driver.findElement(By.xpath("//div[contains (@data-trackas,'side-tab') and contains (@title,'Chat Now')]/a")).click();
+           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+           Thread.sleep(15000);
+           
+           /* ----- Navigating to Chat Window -----*/
+
+            Set allWindowHandles = driver.getWindowHandles();
+            int win = allWindowHandles.size();
+            System.out.println("no. of windows open  "  + win);
+            Thread.sleep(10000);
+            String window1 = (String) allWindowHandles.toArray()[1];
+            driver.switchTo().window(window1);  
+            driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+            Thread.sleep(25000);  
+            System.out.println("Open Chat Window");   
+		 
+           /*--Provide invalid input values and start chart---*/
+            
+           //Click start chat without specifying input values
+            
+            driver.findElement(By.xpath(".//*[@id='fd_submit']")).click();
+            Thread.sleep(25000);
+               
+           //Verify error message
+          
+		    String Error_message = driver.findElement(By.xpath(".//*[@id='fd_errortxt']")).getText();						  
+			System.out.println("Error message " +Error_message);				  
+			Assert.assertTrue(Error_message.contains("The field ‘First Name’ is required."));
+			  
+			
+		  /*--Provide valid input values and start chart---*/
+        
+           //Click start chat with specifying input values
+			
+			//Provide input values
+			
+	       //FirstName Field
+	       driver.findElement(By.xpath(".//*[@id='fname']")).clear();
+		   driver.findElement(By.xpath(".//*[@id='fname']")).sendKeys("FirstName");
+		   
+		   //Last Name Field
+		   driver.findElement(By.xpath(".//*[@id='lname']")).clear();
+		   driver.findElement(By.xpath(".//*[@id='lname']")).sendKeys("LastName");
+		   
+		   //Username Name Field
+		   driver.findElement(By.xpath(".//*[@id='email']")).clear();
+		   //driver.findElement(By.xpath(".//*[@id='pt1:sections:it3::content']")).sendKeys(Config.USERID);
+		   driver.findElement(By.xpath(".//*[@id='email']")).sendKeys(Config.USERID);
+		   
+		   //company  Name Field
+		   driver.findElement(By.xpath(".//*[@id='optionaldata1']")).clear();
+		   driver.findElement(By.xpath(".//*[@id='optionaldata1']")).sendKeys("ORACLE");
+		   
+		   //Country  Field
+		   driver.findElement(By.xpath(".//*[@id='optionaldata2']")).clear();
+		   driver.findElement(By.xpath(".//*[@id='optionaldata2']")).sendKeys("INDIA");
+		   
+		   //Click START CHAT
+         // driver.findElement(By.xpath(".//*[@id='fd_submit']")).click();
+         // Thread.sleep(20000);
+               
+           //Verify session whether user able to type and send
+         //  driver.findElement(By.xpath(".//*[@id='inputarea_ta']")).sendKeys("Part of automation testing ,please ignore and sorry"); 
+         //  Thread.sleep(5000);
+           
+            
+            //Click SEND
+           // driver.findElement(By.xpath(".//*[@id='sendbtn_txt']")).click();
+          //  Thread.sleep(10000);
+            
+            //End Session
+           // driver.findElement(By.xpath(".//*[@id='custombtn1_txt']")).click();
+            //Thread.sleep(10000);
+            
+           // driver.close();
+          
+		    			
+}catch(Exception err) {
+
+        Assert.fail(err.getMessage());
+
+    }
+
+}
+
+  @AfterClass
+
+  public void testCleanUp()   {
+
+  //  Quit -closes all the open windows
+
+   driver.quit();
+
+  }
+
+    }   
+   

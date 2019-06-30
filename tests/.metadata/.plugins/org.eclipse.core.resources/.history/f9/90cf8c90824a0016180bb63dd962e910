@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="none">
+
+  <test name="Test">
+    <classes>
+    
+      <!-- MY Account -->
+       <class name="com.qa141.myaccount.C9_MYA_01_loginLogout_Test"/>
+       <class name="com.qa141.myaccount.C9_MYA_02_VerifyAllLinks_Test"/>
+       <class name="com.qa141.myaccount.C9_MYA_03_VerifyUI_Test"/>
+       <class name="com.qa141.myaccount.C9_MYA_04_FieldLevelCheck_Test"/>
+       <class name="com.qa141.myaccount.C9_MYA_05_ErrorHandling_Test"/>
+       <class name="com.qa141.myaccount.C9_MYA_06_Security_Test"/>       
+       <class name="com.qa141.myaccount.C9_MYA_07_SearchFilter_Test"/>  
+       <class name="com.qa141.myaccount.C9_MYA_08_ValidateErrorpages_Test"/>
+       <class name="com.qa141.myaccount.C9_MYA_09_FunctionalityCheck_Test"/>   
+       <class name="com.qa141.myaccount.C9_MYA_11_SetFavorite_Test"/>
+       <class name="com.qa141.myaccount.C9_MYA_10_SetPreference_Test"/>       
+    
+     
+    
+     
+   </classes>
+ 
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

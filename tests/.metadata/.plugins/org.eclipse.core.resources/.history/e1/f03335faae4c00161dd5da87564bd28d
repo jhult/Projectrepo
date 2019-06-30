@@ -1,0 +1,177 @@
+package com.qa141.securities;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+import java.util.Random;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_Security_09_ModifyUser_Test extends BaseTest {
+//	WebDriver driver, driver1;
+	Select select;
+//	  Test Steps:
+	
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    try{  
+    	System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());  
+        System.out.println(browserName);
+		   driver = Browser.browserToRun(driver1, browserName);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   
+		   driver.get(Config.APP_URL); 
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+			
+		   /* ---------- SignIN to MyServices  ---------- */	   
+		   Utility.myServicePage(driver);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+		   
+		   /* ----- Provide Login Credentials -----*/	
+	       Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       
+/* Click on securities tab*/
+	       
+	       driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-navbtns:bbmm-btn-security']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			  
+			  Utility.modify(driver);
+		       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(15000);
+			  
+/*click on modify
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:editBtn']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		       Thread.sleep(15000);*/
+			  
+ /*verify modify pop-up header*/
+				 String modifyhdr=  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:pw-adduser::_ttxt']")).getText();
+				 System.out.println(modifyhdr);
+				 Assert.assertEquals(modifyhdr,"Modify User"); 
+				 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				 Thread.sleep(1000); 
+				 System.out.println("verified Pop-up header");
+
+ /*verify pop-up container */
+				 		 String popup=  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:pw-adduser::contentContainer']")).getAttribute("id");
+				 		 System.out.println(popup);
+				 		 Assert.assertEquals(popup,"pt1:sections:currentTabContents:pw-adduser::contentContainer"); 
+				 		 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				 		 Thread.sleep(1000); 
+				 		 System.out.println("verified Pop-upcontainer");
+
+/*verify labels*/
+				 		 String fn= driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it1']/td[1]/label")).getText();
+				 		 System.out.println(fn);
+				 		 Assert.assertEquals(fn,"First Name"); 
+				 		 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				 		 Thread.sleep(1000); 
+				 		 System.out.println("verified first name");
+				 		 
+				 		 String ln= driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it2']/td[1]/label")).getText();
+				 		 System.out.println(ln);
+				 		 Assert.assertEquals(ln,"Last Name"); 
+				 		 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				 		 Thread.sleep(1000); 
+				 		 System.out.println("verified last name");
+				 		 
+				 		String em= driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it3']/td[1]/label")).getText();
+				 		 System.out.println(em);
+				 		 Assert.assertEquals(em,"Email"); 
+				 		 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				 		 Thread.sleep(1000); 
+				 		 System.out.println("verified email");
+				 		 
+				 		String un= driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it5']/td[1]/label")).getText();
+				 		 System.out.println(un);
+				 		 Assert.assertEquals(un,"User Name"); 
+				 		 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				 		 Thread.sleep(1000); 
+				 		 System.out.println("verified user name label");
+				 		 
+/*verify disabled user name*/
+				 		 
+				 		 
+/*verify close icon*/
+						 driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:pw-adduser::close']")).click();
+						  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+						  Thread.sleep(5000);  	
+						  System.out.println("clicked close icon");
+						  
+
+		 /*------verify modify->Cancel------*/
+		  Utility.modify(driver);
+		  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:cb3']")).click();
+		  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		  Thread.sleep(5000);  	
+		  System.out.println("canceled");
+		  
+		  /*------modify with valid values--------*/
+		  //		  
+		  Utility.modify(driver);
+		  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it1::content']")).clear();
+		  Random randomGenerator=  new Random();
+	      int randomInt = randomGenerator.nextInt(100);
+	      System.out.println("Random Value : " +randomInt  );
+		  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it1::content']")).sendKeys("q"+randomInt);
+		  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it2::content']")).clear();
+		  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it2::content']")).sendKeys("q1"+randomInt);
+		  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it3::content']")).clear();
+		  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:it3::content']")).sendKeys("welc4186@gmail.com");
+		  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:cb2']")).click();
+		  
+//		  
+		  String popmsg= driver.findElement(By.xpath(".//*[@id='pt1:header:h:nc-ot-rv']")).getText();
+		  System.out.println(popmsg);
+			 popmsg.startsWith("The following user's information was updated:");
+			 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			 Thread.sleep(1000); 
+			 System.out.println("success"); 
+			  
+			
+			 	System.out.println("Test Completed");
+   }
+   catch(Exception err) { 
+   	Assert.fail(err.getMessage());
+   }
+}
+ @AfterClass
+ public void testCleanUp()   {
+	 /*----- Logout ------*/
+     Utility.logOut(driver);
+     
+	    //  Quit -closes all the open windows
+  driver.quit();
+
+	    	
+ }
+	   
+}	
+	       
+
+		  
+		  
+
+						  

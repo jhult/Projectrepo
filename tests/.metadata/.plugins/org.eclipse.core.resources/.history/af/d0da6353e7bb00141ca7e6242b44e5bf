@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><suite name="Failed suite" parallel="none">
+<test name="Test(failed)">
+<classes>
+<class name="com.qa151.pb.C9_PB_28_19498932_ComputeUI_AboutDialogBoxMentionsCreatingInstances"/>
+<class name="com.qa151.pb.C9_PB_40_19643792_BubbleUpSelectableValuesInDropdowns"/>
+<class name="com.qa151.pb.C9_PB_46_19641053_UATextCreateInstanceNetworkScreen"/>
+<class name="com.qa151.pb.C9_PB_49_19577589_TextInConsoleMenuNotConsistentAccross_DB_Java_Compute_UI"/>
+</classes>
+</test>
+</suite>

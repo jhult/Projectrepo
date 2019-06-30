@@ -1,0 +1,247 @@
+package com.qa141.securities;
+
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_Security_25_SecurityContacts_Test  extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	  
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    try{  
+		   System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());  
+		   System.out.println(browserName);
+		   
+		   driver = Browser.browserToRun(driver1, browserName);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   
+		   driver.get(Config.APP_URL); 
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       
+		   /* ---------- SignIN to MyServices  ---------- */	   
+		   Utility.myServicePage(driver);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       
+		   /* ----- Provide Login Credentials -----*/	
+	       Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       
+ /* -------------------------Click on securities tab------------------*/
+	       
+	       driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-navbtns:bbmm-btn-security']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			  
+		
+			//verify default selection tab-> Users
+			    System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:sections:cl-usr']/span")).getText());
+			    Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:cl-usr']/span")).getText().contains("Users"));
+
+			    //Verify Contacts
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:cl-cnts']/span")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(15000);
+				   System.out.println("Contacts");
+				   
+				  System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:sections:cl-cnts']/span")).getText()); 
+				  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:cl-cnts']/span")).getText().contains("Contacts"));				   
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:lf-btn']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:sc-lnkj_id_1']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);
+			//Add security contact	  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-cb-add']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);
+				  
+				  System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-pw-add::_ttxt']")).getText());
+				  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-pw-add::_ttxt']")).getText().contains("Add Security Contact"));
+				    
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-it3::content']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  Random randomGenerator=  new Random();
+			      int randomInt = randomGenerator.nextInt(100);
+			      System.out.println("Random Value : " +randomInt  );
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-it3::content']")).sendKeys(+randomInt+"@gmail.com");
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000); 
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-smc1::cntrl']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-smc1::drop']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-smc1::saId']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-cb-save']")).click();
+				 driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				 driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				 System.out.println(driver.findElement(By.xpath(" .//*[@id='pt1:header:h:bb-pglMsg']")).getText()); 
+				 Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-pglMsg']")).getText().contains("The following contact was added:"));				   
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  
+				  //Search Contact
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).sendKeys("@gmail.com");
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000); 
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_cil::icon']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  //Modify External contact
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:contact-lv:0:nc-cl-gear']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-modify']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  
+				  
+				  System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-pw-add::_ttxt']")).getText());
+				  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-pw-add::_ttxt']")).getText().contains("Modify Security Contact"));
+				 
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-it3::content']")).clear();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-it3::content']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  Random randomGenerator1=  new Random();
+			      int randomInt1 = randomGenerator.nextInt(100);
+			      System.out.println("Random Value : " +randomInt1  );
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-it3::content']")).sendKeys(+randomInt1+"@gmail.com");
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000); 
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-cb-save']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000); 
+				  System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-pglMsg']")).getText()); 
+				  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-pglMsg']")).getText().contains("The following contact's information was updated:"));				   
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  
+				  //Search Contact
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).clear();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000); 
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).sendKeys("@gmail.com");
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000); 
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_cil::icon']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  //Remove External contact
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:contact-lv:0:nc-cl-gear']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-remove']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-pw-del::_ttxt']")).getText());
+				  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-pw-del::_ttxt']")).getText().contains("Remove Security Contact"));
+				  
+				  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:nc-cb-del']")).click();
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  Thread.sleep(5000);  
+				  
+				  System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-pglMsg']")).getText()); 
+				  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-pglMsg']")).getText().contains("The following contact was removed:"));				   
+				  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				  
+				  System.out.println("Test Completed");
+    }
+    catch(Exception err) { 
+    	Assert.fail(err.getMessage());
+    }
+   }
+   @AfterClass
+   public void testCleanUp()   {
+   	/*----- Logout ------*/
+       Utility.logOut(driver);
+       
+   	    //  Quit -closes all the open windows
+  driver.quit();
+   	    	
+   }
+   	   
+}
+
+				  
+				  
+				  
+				  
+				  
+				  

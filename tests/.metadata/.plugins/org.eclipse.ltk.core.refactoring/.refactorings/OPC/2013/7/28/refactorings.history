@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;C9_IDM_UserCreation.java&apos; to &apos;OPC/src/com.safc.idm&apos;&#x0D;&#x0A;- Original project: &apos;OPC&apos;&#x0D;&#x0A;- Destination element: &apos;OPC/src/com.safc.idm&apos;&#x0D;&#x0A;- Original element: &apos;com.safc.idm.C9_IDM_UserCreation.java&apos;" description="Copy compilation unit" destination="/src&lt;com.safc.idm" element1="/src&lt;com.safc.idm{C9_IDM_UserCreation.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1373366887677" units="1" version="1.0"/>
+</session>

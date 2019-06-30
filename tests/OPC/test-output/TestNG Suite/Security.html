@@ -1,0 +1,550 @@
+<html>
+<head>
+<title>TestNG:  Security</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Security</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>20/5/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Jul 13 13:24:52 MDT 2016</td>
+</tr>
+<tr><td>Total time:</td><td>4588 seconds (4588477 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_05_ResetPwdAuto_Test.testCleanUp()'><b>testCleanUp</b><br>Test class: com.qa141.securities.C9_Security_05_ResetPwdAuto_Test</td>
+<td><div><pre>java.lang.NullPointerException
+	at com.qa141.securities.C9_Security_05_ResetPwdAuto_Test.testCleanUp(C9_Security_05_ResetPwdAuto_Test.java:168)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 16 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace362961118", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace362961118'><pre>java.lang.NullPointerException
+	at com.qa141.securities.C9_Security_05_ResetPwdAuto_Test.testCleanUp(C9_Security_05_ResetPwdAuto_Test.java:168)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.internal.TestMethodWorker.invokeAfterClassMethods(TestMethodWorker.java:225)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:114)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:37)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:368)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>0</td>
+<td>com.qa141.securities.C9_Security_05_ResetPwdAuto_Test@2c8d66b2</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_05_ResetPwdAuto_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_05_ResetPwdAuto_Test<br>Parameters: chrome<br/>
+<a href="#Output-1689851099" onClick='toggleBox("Output-1689851099", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1689851099" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1689851099">
+Couldn't create screenshot <br/>
+null<br/>
+<a href=null target='_blank' >Screenshot</a><br/>
+<img src="file:///null" width=500 height=300" alt=""/><br /><br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: unknown error: updateWindow is not defined
+JavaScript stack:
+ReferenceError: updateWindow is not defined
+    at eval (eval at executeAsyncScript (unknown source), &lt;anonymous&gt;:2:9)
+    at executeAsyncScript (&lt;anonymous&gt;:314:26)
+    at apply.state (&lt;anonymous&gt;:330:29)
+    at callFunction (&lt;anonymous&gt;:222:33)
+    at apply.state (&lt;anonymous&gt;:232:23)
+    at &lt;anonymous&gt;:233:3
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 441 milliseconds
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir23436_6440}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 49cc596a194dc59da9158fd4afa41c0a
+	at com.qa141.securities.C9_Security_05_ResetPwdAuto_Test.test(C9_Security_05_ResetPwdAuto_Test.java:159)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 17 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1689851099", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1689851099'><pre>java.lang.AssertionError: unknown error: updateWindow is not defined
+JavaScript stack:
+ReferenceError: updateWindow is not defined
+    at eval (eval at executeAsyncScript (unknown source), &lt;anonymous&gt;:2:9)
+    at executeAsyncScript (&lt;anonymous&gt;:314:26)
+    at apply.state (&lt;anonymous&gt;:330:29)
+    at callFunction (&lt;anonymous&gt;:222:33)
+    at apply.state (&lt;anonymous&gt;:232:23)
+    at &lt;anonymous&gt;:233:3
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 441 milliseconds
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir23436_6440}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 49cc596a194dc59da9158fd4afa41c0a
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.qa141.securities.C9_Security_05_ResetPwdAuto_Test.test(C9_Security_05_ResetPwdAuto_Test.java:159)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:37)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:368)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>2</td>
+<td>com.qa141.securities.C9_Security_05_ResetPwdAuto_Test@2c8d66b2</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test<br>Parameters: chrome<br/>
+<a href="#Output-1888207151" onClick='toggleBox("Output-1888207151", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1888207151" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1888207151">
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_01.42.25_com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test_test.png target='_blank' >07-13-2016_01.42.25_com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test_test.png</a><br/>
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_01.42.25_com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test_test.png target='_blank' >Screenshot</a><br/>
+<img src="file:///C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_01.42.25_com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test_test.png" width=500 height=300" alt=""/><br /><br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: no such element
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.13 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir22224_1630}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 6d5c56ff1564070b865a44076dd71b9c
+	at com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test.test(C9_Security_08_ModifyFieldValidation_Test.java:183)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 17 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1888207151", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1888207151'><pre>java.lang.AssertionError: no such element
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 30.13 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir22224_1630}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 6d5c56ff1564070b865a44076dd71b9c
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test.test(C9_Security_08_ModifyFieldValidation_Test.java:183)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:37)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:368)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>207</td>
+<td>com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test@58ceff1</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_22_Search_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_22_Search_Test<br>Parameters: chrome<br/>
+<a href="#Output-920978681" onClick='toggleBox("Output-920978681", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-920978681" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-920978681">
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_02.22.17_com.qa141.securities.C9_Security_22_Search_Test_test.png target='_blank' >07-13-2016_02.22.17_com.qa141.securities.C9_Security_22_Search_Test_test.png</a><br/>
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_02.22.17_com.qa141.securities.C9_Security_22_Search_Test_test.png target='_blank' >Screenshot</a><br/>
+<img src="file:///C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_02.22.17_com.qa141.securities.C9_Security_22_Search_Test_test.png" width=500 height=300" alt=""/><br /><br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: no such element
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 31.84 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir24620_28751}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: e29096728bedb18135434694d3476af4
+	at com.qa141.securities.C9_Security_22_Search_Test.test(C9_Security_22_Search_Test.java:203)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 17 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace920978681", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace920978681'><pre>java.lang.AssertionError: no such element
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 31.84 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir24620_28751}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: e29096728bedb18135434694d3476af4
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.qa141.securities.C9_Security_22_Search_Test.test(C9_Security_22_Search_Test.java:203)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:37)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:368)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>200</td>
+<td>com.qa141.securities.C9_Security_22_Search_Test@5a39699c</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_24_NotificationContacts_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_24_NotificationContacts_Test<br>Parameters: chrome<br/>
+<a href="#Output-518087185" onClick='toggleBox("Output-518087185", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-518087185" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-518087185">
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_02.28.45_com.qa141.securities.C9_Security_24_NotificationContacts_Test_test.png target='_blank' >07-13-2016_02.28.45_com.qa141.securities.C9_Security_24_NotificationContacts_Test_test.png</a><br/>
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_02.28.45_com.qa141.securities.C9_Security_24_NotificationContacts_Test_test.png target='_blank' >Screenshot</a><br/>
+<img src="file:///C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_02.28.45_com.qa141.securities.C9_Security_24_NotificationContacts_Test_test.png" width=500 height=300" alt=""/><br /><br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: element not visible
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20 milliseconds
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir21288_1003}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: d70c9be967bc2fb2f308aadbb9ae80b6
+	at com.qa141.securities.C9_Security_24_NotificationContacts_Test.test(C9_Security_24_NotificationContacts_Test.java:178)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 17 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace518087185", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace518087185'><pre>java.lang.AssertionError: element not visible
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20 milliseconds
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir21288_1003}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: d70c9be967bc2fb2f308aadbb9ae80b6
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.qa141.securities.C9_Security_24_NotificationContacts_Test.test(C9_Security_24_NotificationContacts_Test.java:178)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:37)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:368)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>161</td>
+<td>com.qa141.securities.C9_Security_24_NotificationContacts_Test@1cd072a9</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_25_SecurityContacts_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_25_SecurityContacts_Test<br>Parameters: chrome<br/>
+<a href="#Output-5991070" onClick='toggleBox("Output-5991070", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-5991070" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-5991070">
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_02.31.40_com.qa141.securities.C9_Security_25_SecurityContacts_Test_test.png target='_blank' >07-13-2016_02.31.40_com.qa141.securities.C9_Security_25_SecurityContacts_Test_test.png</a><br/>
+<a href=C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_02.31.40_com.qa141.securities.C9_Security_25_SecurityContacts_Test_test.png target='_blank' >Screenshot</a><br/>
+<img src="file:///C:\SAFc\tests\OPC\test-output\screenShots\07-13-2016\07-13-2016_02.31.40_com.qa141.securities.C9_Security_25_SecurityContacts_Test_test.png" width=500 height=300" alt=""/><br /><br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: element not visible
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 19 milliseconds
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir22820_26697}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: cc4db3dea58b068151492e1d98aaaac6
+	at com.qa141.securities.C9_Security_25_SecurityContacts_Test.test(C9_Security_25_SecurityContacts_Test.java:211)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 17 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace5991070", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace5991070'><pre>java.lang.AssertionError: element not visible
+  (Session info: chrome=51.0.2704.103)
+  (Driver info: chromedriver=2.9.248315,platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 19 milliseconds
+Build info: version: &apos;2.39.0&apos;, revision: &apos;ff23eac&apos;, time: &apos;2013-12-16 16:11:15&apos;
+System info: host: &apos;slc05wcd&apos;, ip: &apos;10.249.129.123&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_73&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=C:\Users\argdas\AppData\Local\Temp\scoped_dir22820_26697}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=51.0.2704.103, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: cc4db3dea58b068151492e1d98aaaac6
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.qa141.securities.C9_Security_25_SecurityContacts_Test.test(C9_Security_25_SecurityContacts_Test.java:211)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:37)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:368)
+	at org.testng.internal.thread.ThreadUtil$2.call(ThreadUtil.java:64)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>173</td>
+<td>com.qa141.securities.C9_Security_25_SecurityContacts_Test@3cb5cdba</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_01_LogonLogout_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_01_LogonLogout_Test<br>Parameters: chrome</td>
+<td></td>
+<td>124</td>
+<td>com.qa141.securities.C9_Security_01_LogonLogout_Test@1b0375b3</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_02_LoggedAsIDA_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_02_LoggedAsIDA_Test<br>Parameters: chrome</td>
+<td></td>
+<td>188</td>
+<td>com.qa141.securities.C9_Security_02_LoggedAsIDA_Test@27f674d</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_03_AdminUserRemove_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_03_AdminUserRemove_Test<br>Parameters: chrome</td>
+<td></td>
+<td>177</td>
+<td>com.qa141.securities.C9_Security_03_AdminUserRemove_Test@129a8472</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_04_AdminModifyUser_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_04_AdminModifyUser_Test<br>Parameters: chrome</td>
+<td></td>
+<td>203</td>
+<td>com.qa141.securities.C9_Security_04_AdminModifyUser_Test@35bbe5e8</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_07_AddUser_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_07_AddUser_Test<br>Parameters: chrome</td>
+<td></td>
+<td>141</td>
+<td>com.qa141.securities.C9_Security_07_AddUser_Test@4c203ea1</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_09_ModifyUser_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_09_ModifyUser_Test<br>Parameters: chrome</td>
+<td></td>
+<td>202</td>
+<td>com.qa141.securities.C9_Security_09_ModifyUser_Test@2752f6e2</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_12_SFTPUserReset_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_12_SFTPUserReset_Test<br>Parameters: chrome</td>
+<td></td>
+<td>215</td>
+<td>com.qa141.securities.C9_Security_12_SFTPUserReset_Test@1134affc</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_13_AddCustomRole_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_13_AddCustomRole_Test<br>Parameters: chrome</td>
+<td></td>
+<td>153</td>
+<td>com.qa141.securities.C9_Security_13_AddCustomRole_Test@e580929</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_14_ModifyCustomrole_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_14_ModifyCustomrole_Test<br>Parameters: chrome</td>
+<td></td>
+<td>184</td>
+<td>com.qa141.securities.C9_Security_14_ModifyCustomrole_Test@1d251891</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_15_AssignCustomRole_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_15_AssignCustomRole_Test<br>Parameters: chrome</td>
+<td></td>
+<td>140</td>
+<td>com.qa141.securities.C9_Security_15_AssignCustomRole_Test@56cbfb61</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_16_RemoveRole_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_16_RemoveRole_Test<br>Parameters: chrome</td>
+<td></td>
+<td>204</td>
+<td>com.qa141.securities.C9_Security_16_RemoveRole_Test@6bdf28bb</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_17_RemoveCustomRole_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_17_RemoveCustomRole_Test<br>Parameters: chrome</td>
+<td></td>
+<td>150</td>
+<td>com.qa141.securities.C9_Security_17_RemoveCustomRole_Test@2f7c7260</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_18_ChallengeQuestion_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_18_ChallengeQuestion_Test<br>Parameters: chrome</td>
+<td></td>
+<td>301</td>
+<td>com.qa141.securities.C9_Security_18_ChallengeQuestion_Test@2d209079</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_19_Sorting_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_19_Sorting_Test<br>Parameters: chrome</td>
+<td></td>
+<td>120</td>
+<td>com.qa141.securities.C9_Security_19_Sorting_Test@6b71769e</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_20_ChangePassword_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_20_ChangePassword_Test<br>Parameters: chrome</td>
+<td></td>
+<td>367</td>
+<td>com.qa141.securities.C9_Security_20_ChangePassword_Test@7c30a502</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_21_IdentitySelfService_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_21_IdentitySelfService_Test<br>Parameters: chrome</td>
+<td></td>
+<td>135</td>
+<td>com.qa141.securities.C9_Security_21_IdentitySelfService_Test@d041cf</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_23_UI_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_23_UI_Test<br>Parameters: chrome</td>
+<td></td>
+<td>223</td>
+<td>com.qa141.securities.C9_Security_23_UI_Test@2133c8f8</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_06_ManageRole_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_06_ManageRole_Test<br>Parameters: chrome</td>
+<td></td>
+<td>202</td>
+<td>com.qa141.securities.C9_Security_06_ManageRole_Test@49e4cb85</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_10_UserRemove_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_10_UserRemove_Test<br>Parameters: chrome</td>
+<td></td>
+<td>174</td>
+<td>com.qa141.securities.C9_Security_10_UserRemove_Test@48140564</td></tr>
+<tr>
+<td title='com.qa141.securities.C9_Security_11_SFTPFieldValidation_Test.test()'><b>test</b><br>Test class: com.qa141.securities.C9_Security_11_SFTPFieldValidation_Test<br>Parameters: chrome</td>
+<td></td>
+<td>198</td>
+<td>com.qa141.securities.C9_Security_11_SFTPFieldValidation_Test@7c75222b</td></tr>
+</table><p>
+</body>
+</html>

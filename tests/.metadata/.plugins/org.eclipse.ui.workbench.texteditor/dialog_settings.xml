@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="selectPlatformService" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="selectPlatformService"/>
+			<item value="modify"/>
+			<item value=":sections:lv-db:0:favpref&apos;]"/>
+			<item value="isElementPresent"/>
+			<item value="isele"/>
+			<item value=".//*[@id=&apos;resources-banner-section&apos;]/div/div/div/div/div[2]/h1"/>
+			<item value=".//*[@class=&apos;infoTextDiv&apos;]/label"/>
+			<item value="pt1:sections:currentTabContents:ls"/>
+		</list>
+		<list key="replacehistory">
+			<item value="pt1:sections:currentTabContents:j_id_id12pc5"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="257" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="380" key="DIALOG_HEIGHT"/>
+		<item value="137" key="DIALOG_Y_ORIGIN"/>
+		<item value="266" key="DIALOG_X_ORIGIN"/>
+	</section>
+</section>

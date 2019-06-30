@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test name="Security(failed)">
+    <classes>
+      <class name="com.qa141.securities.C9_Security_06_ManageRole_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+          <include name="test" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_06_ManageRole_Test -->
+      <class name="com.qa141.securities.C9_Security_16_RemoveRole_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="test" invocation-numbers="0"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_16_RemoveRole_Test -->
+      <class name="com.qa141.securities.C9_Security_09_ModifyUser_Test">
+        <methods>
+          <include name="testCleanUp"/>
+          <include name="afterMethod"/>
+          <include name="test" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_09_ModifyUser_Test -->
+      <class name="com.qa141.securities.C9_Security_04_AdminModifyUser_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_04_AdminModifyUser_Test -->
+      <class name="com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_08_ModifyFieldValidation_Test -->
+      <class name="com.qa141.securities.C9_Security_02_LoggedAsIDA_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_02_LoggedAsIDA_Test -->
+      <class name="com.qa141.securities.C9_Security_05_ResetPwdAuto_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+          <include name="test" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_05_ResetPwdAuto_Test -->
+      <class name="com.qa141.securities.C9_Security_20_ChangePassword_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+          <include name="test" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_20_ChangePassword_Test -->
+      <class name="com.qa141.securities.C9_Security_17_RemoveCustomRole_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="test" invocation-numbers="0"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_17_RemoveCustomRole_Test -->
+      <class name="com.qa141.securities.C9_Security_21_IdentitySelfService_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="test" invocation-numbers="0"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_21_IdentitySelfService_Test -->
+      <class name="com.qa141.securities.C9_Security_01_LogonLogout_Test">
+        <methods>
+          <include name="testCleanUp"/>
+          <include name="setup"/>
+          <include name="afterMethod"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_01_LogonLogout_Test -->
+      <class name="com.qa141.securities.C9_Security_13_AddCustomRole_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="test" invocation-numbers="0"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_13_AddCustomRole_Test -->
+      <class name="com.qa141.securities.C9_Security_22_Search_Test">
+        <methods>
+          <include name="test" invocation-numbers="0"/>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_22_Search_Test -->
+      <class name="com.qa141.securities.C9_Security_11_SFTPFieldValidation_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+          <include name="test" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_11_SFTPFieldValidation_Test -->
+      <class name="com.qa141.securities.C9_Security_07_AddUser_Test">
+        <methods>
+          <include name="test" invocation-numbers="0"/>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_07_AddUser_Test -->
+      <class name="com.qa141.securities.C9_Security_19_Sorting_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_19_Sorting_Test -->
+      <class name="com.qa141.securities.C9_Security_15_AssignCustomRole_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+          <include name="test" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_15_AssignCustomRole_Test -->
+      <class name="com.qa141.securities.C9_Security_14_ModifyCustomrole_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_14_ModifyCustomrole_Test -->
+      <class name="com.qa141.securities.C9_Security_12_SFTPUserReset_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="test" invocation-numbers="0"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_12_SFTPUserReset_Test -->
+      <class name="com.qa141.securities.C9_Security_18_ChallengeQuestion_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_18_ChallengeQuestion_Test -->
+      <class name="com.qa141.securities.C9_Security_03_AdminUserRemove_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_03_AdminUserRemove_Test -->
+      <class name="com.qa141.securities.C9_Security_10_UserRemove_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="test" invocation-numbers="0"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_10_UserRemove_Test -->
+      <class name="com.qa141.securities.C9_Security_23_UI_Test">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="test" invocation-numbers="0"/>
+          <include name="testCleanUp"/>
+        </methods>
+      </class> <!-- com.qa141.securities.C9_Security_23_UI_Test -->
+    </classes>
+  </test> <!-- Security(failed) -->
+</suite> <!-- Failed suite [Suite] -->

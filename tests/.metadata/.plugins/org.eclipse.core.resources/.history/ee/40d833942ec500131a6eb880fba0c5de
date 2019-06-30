@@ -1,0 +1,197 @@
+package com.qa141.cloudui;
+
+/*
+ * Verifying all buttons displayed at Landing Page
+ *
+ * 
+ * 
+ */
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.locators.CloudHomePage;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_LandingPage_05_All_Buttons_Test extends BaseTest {
+	
+Select select;
+	
+	@Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+	 try{
+		 
+		  System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());  
+	      System.out.println(browserName);
+		   
+		   driver = Browser.browserToRun(driver1, browserName);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  
+		   driver.get(Config.APP_URL); 
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   
+		   /*--------------------------------- All Landing Page Header related Test Scripts -----------------------------------------------------*/	
+		   
+		   
+		   /*----- CloudHomePage ------*/	
+		   
+		   driver.findElement(CloudHomePage.HOME_LINK).click();
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		   driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+				   
+		   // Home page verification	
+		    Assert.assertEquals(driver.findElement(CloudHomePage.HOME_LINK).getText(), "Home");
+		    System.out.println("Home Page displayed");
+		    
+		    // Buttons at Home Page
+		  //  By.xpath("//a [@class='cloudButton']/span").getText();
+		    
+		  String S =  driver.findElement(CloudHomePage.Home_Manage_button_trial).getText();
+		  Assert.assertEquals(S, "Free 30-Day Trial");
+		   // driver.findElement(CloudHomePage.Home_Manage_button_trial).click();
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			Thread.sleep(5000); 
+			driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+			
+			System.out.println("Trial Button Clicked");
+			
+			
+			// Navigate to Product & Services and Engage Customers link
+			
+			driver.findElement(CloudHomePage.Home_Product_Services).click();
+			
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(5000);
+		    driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+		    
+		    driver.findElement(CloudHomePage.Home_Engage_Customers).click();
+		    
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		    Thread.sleep(5000);
+		    driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+		    
+		    
+			System.out.println("At Engage Customers page");
+			
+			
+			//  Clicking Details button
+			String S1 = driver.findElement(CloudHomePage.Home_Manage_details_button).getText();
+			Assert.assertEquals(S1, "Details");
+		//	driver.findElement(CloudHomePage.Home_Manage_details_button).click();
+			
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			Thread.sleep(5000); 
+			driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+			driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+			
+			System.out.println("Details Button Clicked");
+			
+		  
+			
+			
+			
+		    
+		  //   	Clicking Try it button
+			driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+			 
+			String S2 = driver.findElement(CloudHomePage.Home_Manage_TryIt_button).getText();
+			Assert.assertEquals(S2, "Try It");
+			 //  driver.findElement(By.xpath("//a[@class='cloudButton']/span")).click();
+			
+			   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			   Thread.sleep(10000);
+			   driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+			   
+			   System.out.println("Tryit Button Clicked");
+				
+				
+				
+			// Navigating Sign In Page and checking all buttons.
+				
+				
+				driver.findElement(CloudHomePage.HOME_MANAGE_SIGN_IN).click();
+				driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				Thread.sleep(15000);
+				driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+				
+				
+				
+		   // Navigating My Services and respective button
+				driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+				String S3 = driver.findElement(CloudHomePage.HOME_MANAGE_SIGN_IN_MY_SERVICES).getText();
+				System.out.println(S3);
+				Assert.assertEquals(S3, "Sign In to My Services");
+				
+				driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				Thread.sleep(10000);
+				driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+				
+				System.out.println("My Services Button displayed at Sign In Page");
+				
+			// Navigating My Accounts and respective button
+				
+				String S4 = driver.findElement(CloudHomePage.HOME_MANAGE_SIGN_IN_MY_ACCOUNT).getText();
+				Assert.assertEquals(S4, "Sign In to My Account");
+				
+				driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				Thread.sleep(10000);
+				driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+				
+				System.out.println("My Services Account displayed at Sign In Page");
+				
+				
+				
+			// Navigating Identity Self service
+				
+				String S5 = driver.findElement(CloudHomePage.HOME_MANAGE_SIGN_IN_SELF_SERVICE).getText();
+				Assert.assertEquals(S5, "Sign In to Self Service");
+				
+				driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				Thread.sleep(10000);
+				driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+				
+				System.out.println("My Services Account displayed at Sign In Page");
+				
+				
+			// Navigating Application service Notifications
+				
+				
+				
+				String S6 = driver.findElement(CloudHomePage.HOME_MANAGE_SIGN_IN_NOTIFICATION).getText();
+				Assert.assertEquals(S6, "Sign In to Notifications");
+				
+				driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				Thread.sleep(10000);
+				driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+				
+				System.out.println("My Services Account displayed at Sign In to Notifications");
+				System.out.println("Test Completed");
+				
+				
+				
+				
+		    
+		   
+	 }    catch(Exception err) { 
+	   	     	 Assert.fail(err.getMessage());
+	   	      }
+	   	   }
+	   	    @AfterClass
+	   	    public void testCleanUp()   {
+	   	    //  Quit -closes all the open windows
+  	      driver.quit();
+	   	    }
+	}
+	
+	

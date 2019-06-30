@@ -1,0 +1,215 @@
+package com.qa141.securities;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_Security_22_Search_Test extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	  
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    try{ 
+    	
+    	System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());  
+        System.out.println(browserName);
+		   driver = Browser.browserToRun(driver1, browserName);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   
+		   driver.get(Config.APP_URL); 
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		       Thread.sleep(10000);
+			
+		   /* ---------- SignIN to MyServices  ---------- */	   
+		   Utility.myServicePage(driver);
+		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		       Thread.sleep(10000);
+		   
+		   /* ----- Provide Login Credentials -----*/	
+	       Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       
+	       /* ------ Navigate to Security Tab ------------*/
+          // Click on securities tab
+	       
+	       driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-navbtns:bbmm-btn-security']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+		
+			/*users->Search*/
+			 // Click on search
+			  System.out.println("Click on search");
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls']")).click();
+			    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(10000);
+			// Pass value
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).clear();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			  
+			  
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).sendKeys(Config.USERID);
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			 //Click on search icon
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_cil::icon']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			  
+			  String UserId=Config.USERID.toLowerCase();
+			  String Str1 = driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:user-lv:0:row:cnIt4:col-item-value']")).getText();
+			  System.out.println("UserId:- " + Str1);
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:user-lv:0:row:cnIt4:col-item-value']")).getText().contains(UserId));
+			 
+			  
+			
+
+	/*------ SFTP users-> Search--------------*/
+			  //Click on SFTP
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:cl-sftp']/span")).click();
+			    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(10000);
+			   // Click on search
+			  
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).sendKeys("@#$%");
+			  //driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).sendKeys("b");
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			 //Click on search icon
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_cil::icon']")).click();
+		      driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		      Thread.sleep(5000); 
+			  
+			  String Str= driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:j_id_id43pc9']/span")).getText();
+			  System.out.println("data:  " +Str);
+          	  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:j_id_id43pc9']/span")).getText().contains("No users available."));
+			 
+			  /*-----------------search for SFTP users-------*/
+			  
+			  // Click on search
+			  
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).clear();
+			  Thread.sleep(1000);
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).sendKeys("u");
+			    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(10000);
+			 //Click on search icon
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_cil::icon']")).click();
+			    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(10000); 
+			  
+			       String Sftp= driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:sftp-lv:0:sftp-row:cnIt4:col-item-value']")).getText();
+					  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:sftp-lv:0:sftp-row:cnIt4:col-item-value']")).getText().contains("us"));
+					  System.out.println(Sftp);
+
+			  /*------------Roles->Search-----*/
+			  
+			  //Click on Roles
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:cl-rle']/span")).click();
+			    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(20000);
+			  
+			   // Click on search
+			  /*driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:cr-ls']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			// Pass value z
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).clear();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);*/
+			       
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).clear();
+			  Thread.sleep(1000);     
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).sendKeys("xyz");
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			 //Click on search icon
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_cil::icon']")).click();
+			    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(10000);
+			  
+			  String Str2= driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:j_id_id12pc9']/span")).getText();
+        	  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:j_id_id12pc9']/span")).getText().contains("No roles available."));
+			  System.out.println(Str2);
+			 
+			  /*-----------------search for valid roles-------*/
+			  
+			  // Click on search
+			 /* driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:cr-ls']")).click();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			// Pass value'identity'
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).clear();
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);*/
+			  
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).clear();
+			  Thread.sleep(1000); 			  
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).sendKeys("identity");
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			 //Click on search icon
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_cil::icon']")).click();
+			    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(20000);
+			       
+			  String Str3= driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:roles-lv:0:r-row:cnIt1:col-item-value']")).getText();
+			  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:roles-lv:0:r-row:cnIt1:col-item-value']")).getText().contains("Identity"));
+			  System.out.println(Str3);
+			
+			  /*-------------- Custom Roles-> Search
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_it::content']")).sendKeys("a");
+			  driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			  Thread.sleep(5000);
+			 //Click on search icon
+			  driver.findElement(By.xpath(".//*[@id='pt1:sections:currentTabContents:ls_cil::icon']")).click();
+			    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+			       Thread.sleep(10000);
+			
+			  System.out.println("displayed custom roles");----*/
+			 
+		  
+			 	System.out.println("Test Completed");
+			  	
+} catch(Exception err) { 
+	 Assert.fail(err.getMessage());
+   }
+}
+ @AfterClass
+ public void testCleanUp()   {
+	 /*----- Logout ------*/
+     Utility.logOut(driver);
+	    //  Quit -closes all the open windows
+  driver.quit();
+	    	
+ }
+}
+	   

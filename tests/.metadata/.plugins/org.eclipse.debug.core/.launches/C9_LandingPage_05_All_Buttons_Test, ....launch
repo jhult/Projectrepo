@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.testng.eclipse.launchconfig">
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.testng.remote.RemoteTestNG"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="OPC"/>
+<mapAttribute key="org.testng.eclipse.ALL_CLASS_METHODS"/>
+<listAttribute key="org.testng.eclipse.CLASS_TEST_LIST">
+<listEntry value="com.qa132.cloudui.C9_LandingPage_11_Leverage_Value_Chain_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_12_Manage_Enterprise_Performance_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_17_Resources_GettingStarted_Test"/>
+<listEntry value="com.qa132.cloudui.C9_CloudUI_01_HomePage_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_03_ChatNow_ContactUs_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_16_Resources_Discover_Test"/>
+<listEntry value="com.qa132.cloudui.C9_CloudUI_04_MyServicesLink_test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_01_HeaderFooter_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_10_Global_Human_Resources_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_14_Build_Apps_Test"/>
+<listEntry value="com.qa132.cloudui.C9_CloudUI_05_MyAccount_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_05_All_Buttons_Test"/>
+<listEntry value="com.qa132.cloudui.C9_CloudUI_02_Create_Trial_DBService_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_07_Service_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_13_Get_Social_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_08_Engage_Sales_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_06_Engage_Customers_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_15_Leverage_Infrastructure_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_02_Empower_Business_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_04_LoginNotRequired_Test"/>
+<listEntry value="com.qa132.cloudui.C9_LandingPage_09_Empower_People_Test"/>
+<listEntry value="com.qa132.cloudui.C9_CloudUI_03_Chatnow_Test"/>
+</listAttribute>
+<listAttribute key="org.testng.eclipse.METHOD_TEST_LIST"/>
+<listAttribute key="org.testng.eclipse.PACKAGE_TEST_LIST"/>
+<mapAttribute key="org.testng.eclipse.PARAMETERS"/>
+<stringAttribute key="org.testng.eclipse.PRE_DEFINED_LISTENERS" value=""/>
+<intAttribute key="org.testng.eclipse.TYPE" value="1"/>
+</launchConfiguration>

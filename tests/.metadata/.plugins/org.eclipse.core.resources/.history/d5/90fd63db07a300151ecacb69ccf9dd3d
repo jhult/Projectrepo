@@ -1,0 +1,192 @@
+package com.qa141.db;
+/*
+ * Scenario covered by scripts: Websheet field validation
+
+
+ * Steps:
+ * 1. Go to Cloud URl
+ * 2. Login to to MyServices Page
+ * 3. Launch DB Service > Verify appropriate checkpoint on DB page.
+ * 4. Validate Websheet fields
+ * 5. Logout.
+ */
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_DB_13_WebsheetFieldValidation_Test extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    	 
+    	 try{  
+    	System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());	 
+    	System.out.println(browserName);
+  		driver = Browser.browserToRun(driver1, browserName);
+  		driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  			  
+  		driver.get(Config.APP_URL); 
+  		driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  		Thread.sleep(5000);
+
+		/* ---------- SignIN to MyServices  ---------- */	   
+		Utility.myServicePage(driver);
+		driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		Thread.sleep(10000); 
+		    
+  	    Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+  	    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//	    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    Thread.sleep(10000); 
+  	       
+
+	   
+	    /* ----- Navigating to Service -----*/	
+  	    Utility.selectPlatformService(driver, "database");
+	    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    Thread.sleep(10000);
+    
+   
+	    String DB_URL = Utility.getDBUrl(driver, By.xpath(".//*[@id='pt1:pt2:currentTabHTMLName:ot131']/span"));
+	    driver.navigate().to(DB_URL);
+	    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    Thread.sleep(30000);
+	  
+	 // below Utility.reLogin(driver) code changes for15.3.1 
+  	  	Utility.reLogin(driver)  	;
+  	  	
+	       /* ----- Navigating to DB Cloud Services Control Window- future use -----*/
+	 /*      Set allWindowHandles = driver.getWindowHandles();
+		   int win = allWindowHandles.size();
+	       System.out.println("no. of windows open  "  + win);
+	       Thread.sleep(5000);
+	       String window1 = (String) allWindowHandles.toArray()[1];
+//	       System.out.println("windows title  "  + window1);
+	       driver.switchTo().window(window1);	
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//	       driver.manage().window().maximize();
+      Thread.sleep(20000);
+//      System.out.println("new windows title  "+ driver.getTitle());
+  */
+	       
+	    Assert.assertEquals("Application Builder", driver.findElement(By.xpath(".//*[@id='L1126603206469918']/a[1]")).getText());
+          	      
+	    /*----- Launch Application Builder ------*/
+	    driver.findElement(By.xpath(".//*[@id='R30606315059404549']/div/table/tbody/tr/td[1]/a/span[2]")).click();
+	    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    Thread.sleep(10000);
+	    
+	    /*----- Go to Websheet Applications ------*/
+	    driver.findElement(By.xpath(".//*[@id='R187075905864335205']/div/ul/li[3]/a/span")).click();
+	    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    Thread.sleep(10000);
+	    System.out.println("Websheet Applications Page");
+	    
+	    /*----- Get Websheet Applications Page URL------*/
+	    String dbWebSheetPageURL=driver.getCurrentUrl();
+	    
+	    /*----- Click create  ------*/
+	    driver.findElement(By.xpath(".//*[@id='B1338904799030874']")).click();
+	    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	    Thread.sleep(10000);
+	    System.out.println("Clicked Create an Websheet Applications");
+	    
+	    if (Utility.isElementPresent(driver, By.xpath(".//*[@id='R2151898127002149036']/div/h1"))){
+			   
+			   if (driver.findElement(By.xpath(".//*[@id='R2151898127002149036']/div/h1")).getText().equalsIgnoreCase("Invalid Websheet Objects")) {
+				System.out.println("First time creation of Websheet Objects");
+				
+		   
+		   driver.findElement(By.xpath(".//*[@id='B2152093623932176476']")).click();
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(10000);
+		   
+		   driver.findElement(By.xpath(".//*[@id='B25619002817190600']")).click();
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//		   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(20000);
+		   
+		   driver.findElement(By.xpath(".//*[@id='B25638706944314757']")).click();
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(10000);
+		   
+		   System.out.println( driver.findElement(By.xpath(" .//*[@id='R227919626131164940']/div/h1")).getText());
+		   Assert.assertEquals("Websheet database objects created.", driver.findElement(By.xpath(" .//*[@id='R227919626131164940']/div/h1")).getText());
+		  		    
+		   driver.navigate().to(dbWebSheetPageURL);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(10000);
+		   
+		   /*----- Click create  ------*/
+		   driver.findElement(By.xpath(".//*[@id='B1338904799030874']")).click();
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(10000);
+			   
+			   }
+	    }
+	    
+	 // Note:  Known issue/bug: No proper error message
+     // logged a bug(fix by :5) BUG 16960062 - 13.1.4: CREATE WEBSHEET, WEBSHEET ID SHOULD BE MADE MANDATORY 
+
+		 /*------Leave blank mandatory fields-----*/
+			   
+			   driver.findElement(By.xpath(".//*[@id='P78_WS_APP_ID']")).clear();
+			   Thread.sleep(1000);
+			    driver.findElement(By.xpath(".//*[@id='P78_WEBSHEET_NAME']")).clear();
+			    Thread.sleep(1000);
+			    
+			    driver.findElement(By.xpath(".//*[@id='B1738948615270521846']")).click();
+				driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				Thread.sleep(5000);
+				   	
+				System.out.println("Error_Message_1:- " +driver.findElement(By.xpath(".//*[@id='aErrorMessage']")).getText());
+		
+		/*-------Enter mandatory fields-> Space-----*/
+
+                  driver.findElement(By.xpath(".//*[@id='P78_WEBSHEET_NAME']")).clear();
+                  driver.findElement(By.xpath(".//*[@id='P78_WEBSHEET_NAME']")).sendKeys("   ");
+			    
+
+			    driver.findElement(By.xpath(".//*[@id='B1738948615270521846']")).click();
+				driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+				Thread.sleep(15000);
+				   	
+				System.out.println("Error_Message_2:- " + driver.findElement(By.xpath(".//*[@id='ERROR']/div")).getText());
+				System.out.println("Test Completed:-  " +  this.getClass().getSimpleName());
+				
+
+ 	    } 
+     	 catch(Exception err) { 
+         	 Assert.fail(err.getMessage());
+          }
+      }
+  	public void testCleanUp()   {
+  		Utility.logOut(driver);
+  		 //  Quit -closes all the open windows
+  	     driver.quit();
+  	}
+}

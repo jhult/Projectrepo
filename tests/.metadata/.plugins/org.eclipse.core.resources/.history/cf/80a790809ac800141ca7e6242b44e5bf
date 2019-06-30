@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><suite name="Failed suite" parallel="none">
+<test name="Test(failed)">
+<classes>
+<class name="com.qa141.db.C9_DB_03_DataBaseApplications_Delete_Test"/>
+<class name="com.qa141.db.C9_DB_12_DatabaseError_Test"/>
+<class name="com.qa141.db.C9_DB_14_Search_Test"/>
+<class name="com.qa141.db.C9_DB_15_UI_Test"/>
+<class name="com.qa141.db.C9_DB_04_PackagedApplications_Install_Run_Test"/>
+<class name="com.qa141.db.C9_DB_05_PackagedApplications_Remove_Test"/>
+<class name="com.qa141.db.C9_DB_06_WebSheetApplications_Create_Run_Test"/>
+<class name="com.qa141.db.C9_DB_07_WebSheetApplications_Delete_Test"/>
+<class name="com.qa141.db.C9_DB_13_WebsheetFieldValidation_Test"/>
+<class name="com.qa141.db.C9_DB_16_WebsheetError_Test"/>
+</classes>
+</test>
+</suite>

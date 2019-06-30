@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="none">
+  <test name="Test">
+    <classes>
+        <class name="com.safc.cloudui.C9_CloudUI_Create_Trial_DBService_SameSAIDA_Test"/>
+        <class name="com.safc.cloudui.C9_CloudUI_HomePage_Test"/>
+        <class name="com.safc.cloudui.C9_CloudUI_MyAccount_Test"/>
+        <class name="com.safc.cloudui.C9_CloudUI_MyService_Test"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

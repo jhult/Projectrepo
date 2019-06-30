@@ -1,0 +1,283 @@
+# this file stores the config values required to run
+
+# Set the browser type for execution, You can either set 1 browser (browser.type=firefox ) or all browser (browser.type=all ).
+#browser.type=iexplore
+browser.type=chrome
+#browser.type=firefox
+#browser.type=android
+#browser.type=all
+
+# Android Emulator Launch Flag | If  android.launch.flag = 1 : It will Launch Emulator (to be used when running tests in batch as it launch emulator once in batch or for launching emulators for 1st time) 
+# If android.launch.flag = 0 : It will not Launch Emulator (to be used when executing single-single test from eclipse and emulator is already up and running).
+android.launch.flag=0
+
+# copy chromedriver.exe to path where chrome.exe is present
+chrome.driver.path=C:\\Users\\ashikuku\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe
+#chrome.driver.path=C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe
+
+# default wait time in seconds. Set it as per speed of internet connection/ wifi connection
+wait.for.seconds=20
+
+# Application url's for 13.2
+#app.url=https://site.dc1.c9edgga.oraclecorp.com/home
+#app.url=https://site.dc2.c9edgga.oraclecorp.com/home
+#app.url=https://cloud-stage.oracle.com/home
+
+# Application url's for 14.1
+#app.url=https://site.c9qaga.us.oracle.com/home
+#app.url=http://slc06kxi.us.oracle.com:7897/mycloud/faces/myServices.jspx 
+# Application url's for14.1.1 Preflight on C9 Mats 
+#app.url=http://slc03tse.us.oracle.com:8989/home
+# Application url's for 14.1 Stage8 MATS Env3 
+#app.url=http://slc06kxn.us.oracle.com:8989/home
+# Application url's for 14.1 Stage9 MATS Env 
+#app.url=http://slc06kxs.us.oracle.com:8989/home
+# Application url's for 14.1 Stage 10 MATS Env 
+#app.url=http://slc06kxz.us.oracle.com:8989/home 
+# Application url's for 14.1.2 Preflight Env 
+#app.url=http://slc03tqi.us.oracle.com:8989/home 
+# Application url's for 14.1.3 Preflight Env 
+#app.url=http://slc03tsb.us.oracle.com:8989/home 
+# Application url's for 14.1.4 Preflight Env 
+#app.url=http://slc03tte.us.oracle.com:8989/home 
+# Application url's for 14.1.6 EDG DC1 Env 
+#app.url=https://site.c9qaga.us.oracle.com/home 
+# Application url's for 14.1.7 MATS
+#app.url=http://slc03tsf.us.oracle.com:8989/home 
+# Application url's for 14.1.7 QAGA DC1 Env 
+#app.url=https://site.c9qaga.us.oracle.com/home 
+# Application url's for 14.1.8 EDG DC1 Env 
+#app.url=https://site.dc1.c9edgga.oraclecorp.com/home
+# Application url's for 14.1.9 QAGA DC1 Env 
+#app.url=https://site.c9qaga.us.oracle.com/home
+# Application url's for 14.1.10 MATS
+#app.url=http://slc03tsb.us.oracle.com:8989/home 
+#app.url=http://slc03try.us.oracle.com:8989/home 
+# Application url's for 14.1.10 EDG DC1 Env 
+#app.url=https://site.dc1.c9edgga.oraclecorp.com/home
+# Application url's for 14.1.10 QAGA  Env 
+#app.url=https://site.c9qaga.us.oracle.com/home
+# Application url's for 14.1.10 Webcenter Content refresh done in migration lab Env 
+#app.url=https://site.c9qaga.us.oracle.com/home
+# Application url's for 14.1.10 EDG DC1 Env 
+#app.url=https://site.dc1.c9edgga.oraclecorp.com/home
+# Application url's for 14.1.13 QAGA  Env 
+#app.url=https://site.c9qaga.us.oracle.com/home
+# Application url's for 14.1.14 MATS
+#app.url=http://slc03trk.us.oracle.com:8989/home 
+#app.url= https://globalmyservice.c9qa132.oraclecorp.com/mycloud/automationan2/faces/gDashboard.jspx
+# Application url's for 14.1.16 QAGA  Env 
+#app.url=https://site.c9qaga.us.oracle.com/home
+# Application url's for 14.1.16 EDG DC1 Env 
+#app.url=https://site.dc1.c9edgga.oraclecorp.com/home
+app.url=https://site.c9qaga.us.oracle.com/home
+
+# for 15.1.3 QAGA Env
+userid=OPC-QA-CERT-IDC_ww@oracle.com
+password=Cloud123@1
+domain=inoracletrial70295
+data.center.name=US Commercial 1
+
+# for 15.1.2 QAGA Env
+#userid=manonmani.jay@oracle.com
+#password=Opcqa123!
+#domain=inoracletrial45163
+#data.center.name=US Commercial 1
+
+# for 14.1.16 EDG DC1 Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial11999
+#data.center.name=US Commercial 1
+
+# for 14.1.16 QAGA  Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial33014
+#data.center.name=US Commercial 1
+
+# for 14.1.15 QAGA  Env
+#userid=manjunatha.paramesh@oracle.com
+#password=Opcqa123!
+#domain=tl14115tpmqagtrial13277
+#data.center.name=US Commercial 1
+
+# for 14.1.14 QAGA  Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial05021
+#data.center.name=US Commercial 1
+
+#userid=c9mats-auto_ww@oracle.com
+#password=Welcome_1
+#domain=usoracletrial51484
+#data.center.name=US Commercial 1
+
+# for 14.1.13 EDG DC1 Env
+#userid=manjunatha.paramesh@oracle.com
+#password=Opcqa123!
+#domain=us14113tpmqagtrial55986
+#data.center.name=US Commercial 1
+
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial67760
+#data.center.name=US Commercial 1
+
+# user credentials 
+# for 14.1.10 QAGA  Env [Webcenter Content refresh]
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial63529
+#data.center.name=US Commercial 1
+
+# for 14.1.10 QAGA  Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial63529
+#data.center.name=US Commercial 1
+
+# for 14.1.10 EDG DC1 Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial47889
+#data.center.name=US Commercial 1
+
+# for 14.1.10 Mats  Env
+#userid=c9mats-auto_ww@oracle.com
+#password=Welcome_1
+#domain=usoracletrial23550
+#data.center.name=US Commercial 1
+
+# for 14.1.9 c9qaga DC1 Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial96870
+#data.center.name=US Commercial 1
+
+# for 14.1.8  EDG DC1 Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial75526
+#data.center.name=US Commercial 1
+
+# for 14.1.7 c9qaga DC1 Env
+#userid=manjunatha.paramesh@oracle.com
+#password=Opcqa123!
+#domain=intpm1417trial75068
+#data.center.name=US Commercial 1
+
+# for 14.1.7 Mats  Env
+#userid=c9mats-auto_ww@oracle.com
+#password=Welcome_1
+#domain=usoracletrial61373
+#data.center.name=US Commercial 1
+
+# for 14.1.6 c9qaga DC1 Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial12375
+#data.center.name=US Commercial 1
+
+# for 14.1.6 c9qaga DC1 Env
+#userid=manjunatha.paramesh@oracle.com
+#password=Opcqa123!
+#domain=intpm1416trial36396
+#data.center.name=US Commercial 1
+
+# for 14.1.5 EDG DC1 Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial28832
+#data.center.name=US Commercial 1
+
+# for 14.1.4 EDG DC1 Env
+#userid=manjunatha.paramesh@oracle.com
+#password=Opcqa123!
+#domain=intpm1414trial35260
+#data.center.name=US Commercial 1
+
+# for 14.1.4 Preflight on C9 Mats Env
+#userid=c9srg-4_ww@oracle.com
+#password=Welcome_1
+#domain=usoracletrial00664
+#data.center.name=US Commercial 1
+
+# for qaga Migration 14.1.3 
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial97483
+#data.center.name=US Commercial 1
+
+# for 14.1.2 Preflight on C9 Mats Env
+#userid=c9mats-auto_ww@oracle.com
+#password=Welcome_1
+#domain=usoracletrial74352 
+#data.center.name=US Commercial 1
+
+# for 14.1.1 Preflight on C9 Mats Env
+#userid=c9mats-auto_ww@oracle.com
+#password=Welcome_1
+#domain=usoracletrial45487 
+#data.center.name=US Commercial 1
+
+# for 14.1 Stage 10 MATS Env
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial03450
+#data.center.name=US Commercial 1
+
+# for [EDG DC1] 14.1 Stage 10 Env
+#userid=manjunatha.paramesh@oracle.com 
+#password=Opcqa123!
+#domain=intpm14110migtrial53129 
+#data.center.name=US Commercial 1
+
+# for [EDG DC1] 13.2-to-14.1 upgrade 
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial40770
+#data.center.name=US Commercial 1
+
+
+# for c9qaga 13.2.10 on 26Mar2014 
+#userid=manjunatha.paramesh@oracle.com
+#password=Qaopc123!
+#domain=ustpmtrial92240
+#data.center.name=US Commercial 1
+
+# for c9edgga on 20Mar2014  
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial24882
+#data.center.name=US Commercial 1
+
+# for 13.2.9 Preflight 
+#userid=c9mats-auto_ww@oracle.com
+#password=Welcome_1
+#domain=usoracletrial79037
+#data.center.name=US Commercial - Austin
+
+# for cloud.c9qaga on 4Mar2014 
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial94178
+#data.center.name=US Commercial 1
+
+# for 14.1 Stage9 MATS Env created on 24Mar2014 
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial50867
+#data.center.name=US Commercial 1
+
+# for 14.1 Stage8 MATS Env3 created on 5Mar2014 
+#userid=OPC-QA-CERT-IDC_ww@oracle.com
+#password=Cloud123@
+#domain=inoracletrial63843
+#data.center.name=US Commercial 1
+
+# for 14.1 on 28Feb2014 
+#userid=manjunatha.paramesh@oracle.com 
+#password=Qaopc123!
+#domain=intpmtrial82753
+#data.center.name=US Commercial 1

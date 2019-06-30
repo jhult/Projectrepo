@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="none"> 
+    
+    <test name="CloudUI">
+    <classes>
+       <!-- Cloud UI -->
+       <class name="com.qa132.cloudui.C9_CloudUI_02_Create_Trial_DBService_Test"/> 
+       <class name="com.qa132.cloudui.C9_CloudUI_04_MyServicesLink_test"/>
+       <class name="com.qa132.cloudui.C9_CloudUI_05_MyAccount_Test"/>   
+       <!-- Landing Page -->  
+     
+      </classes>
+    </test>
+      
+   
+      
+    <test name="MYService">
+    <classes>         
+        <!-- MY Service -->   
+       <class name="com.qa141.myservices.C9_MYS_08_ValidateErrorpages_Test"/>
+	   <class name="com.qa141.myservices.C9_MYS_09_SearchFilter_Test"/>
+         </classes>
+    </test>
+      
+    <test name="MYAccount">
+    <classes>      
+       <!-- MY Account --> 
+	<class name="com.qa141.myaccount.C9_MYA_03_VerifyUI_Test"/>
+	<class name="com.qa141.myaccount.C9_MYA_04_FieldLevelCheck_Test"/>
+	<class name="com.qa141.myaccount.C9_MYA_06_Security_Test"/>
+	<class name="com.qa141.myaccount.C9_MYA_09_FunctionalityCheck_Test"/>        
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+

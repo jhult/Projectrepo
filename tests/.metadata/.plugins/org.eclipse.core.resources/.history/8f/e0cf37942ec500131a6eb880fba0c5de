@@ -1,0 +1,285 @@
+package com.qa141.cloudui;
+/*
+ * Navigate to Resources->Getting Started section
+ *
+ * Verify Documentation,Downloads, Forums, Support and Training link
+ * 
+ */
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.locators.CloudHomePage;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_LandingPage_17_Resources_GettingStarted_Test extends BaseTest{
+	
+	Select select;
+	   
+    
+
+    @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+
+       public void test(String browserName) {
+
+     
+     try{
+
+    	    System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());  
+	        System.out.println(browserName);
+            driver = Browser.browserToRun(driver1, browserName);
+            driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+
+              
+           driver.get(Config.APP_URL);
+           
+           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+           Thread.sleep(15000);
+           
+          
+
+           /*--------------------------------- All Landing Page Header related Test Scripts -----------------------------------------------------*/   
+         
+
+           /*----- CloudHomePage ------*/   
+
+
+           driver.findElement(CloudHomePage.HOME_LINK).click();
+           
+           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+           Thread.sleep(15000);
+           driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+           
+       //  Getting Started 
+           
+           /*----- Home Page, Resource link, Documentation link ------*/
+               
+               
+               
+               driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+               
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+               System.out.println("Navigationg Getting started Tab");
+               Thread.sleep(15000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+               
+             
+               driver.findElement(CloudHomePage.HOME_RESOURCE_DOCUMENTATION).click();
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+               System.out.println("Navigationg Documentation Link");
+               Thread.sleep(15000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+               
+               /* ----- Navigating to New Window -------------------------------------------*/
+
+               Set allWindowHandles = driver.getWindowHandles();
+               int win = allWindowHandles.size();
+               System.out.println("no. of windows open  "  + win);
+               Thread.sleep(15000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+               String window = (String) allWindowHandles.toArray()[1];
+               driver.switchTo().window(window);   
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//             driver.manage().window().maximize();
+               Thread.sleep(20000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+
+                                            
+
+               Assert.assertEquals(driver.findElement(CloudHomePage.HOME_RESOURCE_DOCUMENTATION_TXT) .getText(), "Cloud Documentation");
+               System.out.println("Navigating Oracle Cloud Documentation page");
+
+               
+
+  //      go back to main window
+              
+
+               driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+           
+               driver.navigate().refresh();
+               Thread.sleep(20000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+
+               
+               /*----- Home Page, Resource link, Downloads link ------*/
+               
+               
+               
+               driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+               
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+               Thread.sleep(20000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+               
+             
+               driver.findElement(CloudHomePage.HOME_RESOURCE_DOWNLOADS).click();
+               
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+               Thread.sleep(15000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+               
+               /* ----- Navigating to New Window -------------------------------------------*/
+
+               Set allWindowHandles1 = driver.getWindowHandles();
+               int win1 = allWindowHandles1.size();
+               System.out.println("no. of windows open  "  + win1);
+               Thread.sleep(15000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+               String window1 = (String) allWindowHandles1.toArray()[2];
+               driver.switchTo().window(window1);   
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//             driver.manage().window().maximize();
+               Thread.sleep(20000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+
+                                            
+
+               Assert.assertEquals(driver.findElement(CloudHomePage.HOME_RESOURCE_DOWNLOADS_TXT) .getText(), "Oracle Cloud Downloads");
+               System.out.println("Navigating Oracle Cloud Downloads page");
+
+               
+
+  //      go back to main window
+              
+
+               driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+           
+               driver.navigate().refresh();
+               Thread.sleep(15000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+               
+               
+               /*----- Home Page, Resource link, Forums link ------*/
+               
+               
+               driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+               
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+               Thread.sleep(15000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+               
+             
+               driver.findElement(CloudHomePage.HOME_RESOURCE_FORUMS).click();
+               
+               driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+               Thread.sleep(20000);
+               driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+               
+               Assert.assertEquals(driver.findElement(CloudHomePage.HOME_RESOURCE_FORUMS_TXT) .getText(), "Oracle Cloud");
+              System.out.println("Navigating Oracle Cloud Downloads page");
+
+               
+               
+               
+               /*String S =  driver.findElement(CloudHomePage.HOME_RESOURCE_FORUMS_BUTTON).getText();
+               System.out.println(S);
+     		   Assert.assertEquals(S, "Visit Forum");
+     		   // driver.findElement(CloudHomePage.Home_Manage_button_trial).click();
+     		    driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+     			Thread.sleep(5000); 
+     			System.out.println("Foram Button Clicked");*/
+     			
+     			
+     			
+     			/*----- Home Page, Resource link, Support link ------*/
+               
+               
+     			driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+                driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                Thread.sleep(15000);
+                driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                
+                driver.findElement(CloudHomePage.HOME_RESOURCE_FORUMS_SUPPORT).click();
+                driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                Thread.sleep(15000);
+                driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                
+                Assert.assertEquals(driver.findElement(CloudHomePage.HOME_RESOURCE_FORUMS_SUPPORT_TXT) .getText(), "Oracle Cloud Services");
+               System.out.println("Navigating Oracle Cloud Support page");
+                
+                
+                /*----- Home Page, Resource link, Training link ------*/
+                
+                
+                driver.findElement(CloudHomePage.Home_Manage_Resources).click();
+                
+                driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                Thread.sleep(15000);
+                driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                
+                driver.findElement(CloudHomePage.HOME_RESOURCE_TRAINING).click();
+                
+                driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+                Thread.sleep(20000);
+                driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                
+                
+                /* ----- Navigating to New Window -------------------------------------------*/
+
+                Set allWindowHandles2 = driver.getWindowHandles();
+                int win2 = allWindowHandles2.size();
+                System.out.println("no. of windows open  "  + win2);
+                Thread.sleep(15000);
+                driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                String window2 = (String) allWindowHandles2.toArray()[3];
+                driver.switchTo().window(window2);   
+                driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//              driver.manage().window().maximize();
+                Thread.sleep(20000);
+                driver.manage().timeouts().pageLoadTimeout(20000, TimeUnit.SECONDS);
+
+                                             
+
+                Assert.assertEquals(driver.findElement(CloudHomePage.HOME_RESOURCE_TRAINING_TXT) .getText(), "Oracle Cloud Learning Library");
+                System.out.println("Navigating Oracle Cloud Training page");
+
+                
+
+   //      go back to main window
+               
+
+                driver.switchTo().window((String) allWindowHandles.toArray()[0]);
+                driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+            
+                driver.navigate().refresh();
+                Thread.sleep(20000);
+                driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.SECONDS);
+                System.out.println("Test Completed");
+                
+                          
+               
+     }catch(Exception err) {
+
+         Assert.fail(err.getMessage());
+
+     }
+
+ }
+
+   @AfterClass
+
+   public void testCleanUp()   {
+
+   //  Quit -closes all the open windows
+
+     driver.quit();
+
+   }
+
+     }
+
+  
+
+
+

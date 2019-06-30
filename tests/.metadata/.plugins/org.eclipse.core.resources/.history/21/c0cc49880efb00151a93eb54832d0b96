@@ -1,0 +1,299 @@
+package com.MigDC1.StoreGSIIntegration;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+import com.safc.configuration.DbConnection;
+
+public class CPQ extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	  
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    try{  
+//		 System.setOut(new PrintStream(new FileOutputStream(".\\log\\console.txt")));
+//	     System.out.println("This is System class!!!");
+	     
+    	  String ssopassword = DbConnection.readDataFromExcelFile(".\\data\\TestData.xls", "Sheet1", 1, 4)	;
+  	    
+		   //System.out.println("*-----Environment Used for testing------ *"+"\n"+Config.APP_URL +"\n" +"\n");
+		   System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());	 
+		   System.out.println(browserName);
+		   
+		   driver = Browser.browserToRun(driver1, browserName);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   
+ /*-----Navigation to CPQ Page-----*/
+	       
+	       
+	  	     driver.navigate().to("https://cpqau.bigmachines.com/sso/saml_request.jsp");
+	  	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  	     driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	  	     Thread.sleep(30000);
+	  	     
+	  	   Login.ssoLogin(driver, "c9qa-gsiintg_ww@oracle.com", ssopassword);   
+		   driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+           driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+
+	       /* --------creation of New quotes--------*/
+	       
+	       driver.findElement(By.xpath(".//*[@id='ext-gen2']/table[2]/tbody/tr[1]/td[3]/div/nobr[1]/a[2]")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+	       
+		   // click on New quote
+		   driver.findElement(By.xpath(".//*[@id='new_quote']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		   
+		   // enter quote name
+		   driver.findElement(By.xpath(".//*[@id='transactionName_t']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		   
+		   driver.findElement(By.xpath(".//*[@id='transactionName_t']")).sendKeys("Messaging");	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		  
+		   System.out.println("Entered quote");
+		   //select Operating unit
+		   //driver.findElement(By.xpath(".//*[@id='field_wrapper_2_operatingUnit_t']/div[1]/div/select")).click();	 
+	      // driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	      // driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   //Thread.sleep(5000); 
+		   
+		   select = new Select(driver.findElement(By.xpath(".//*[@id='field_wrapper_1_operatingUnit_t']/div[1]/div/select")));
+		   select.selectByVisibleText("Oracle America, Inc.");
+		   Thread.sleep(5000);
+		   System.out.println("Entered subscription values");
+		   
+		 /*--------Opportunity and quote-----------*/
+		   
+		   driver.findElement(By.xpath(".//*[@id='tab36282441']/a/span/span/span")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		   
+		   driver.findElement(By.xpath(".//*[@id='opportunityNumber_t']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		   
+		   driver.findElement(By.xpath(".//*[@id='opportunityNumber_t']")).sendKeys("8SMF");	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		   
+		   driver.findElement(By.xpath(".//*[@id='html_call_action_pull-opportunity']")).click();		 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		   
+		   //Enter Account Manager
+		   driver.findElement(By.xpath(".//*[@id='opportunityAccountManager']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		   driver.findElement(By.xpath(".//*[@id='opportunityAccountManager']")).clear();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000); 
+		   driver.findElement(By.xpath(".//*[@id='opportunityAccountManager']")).sendKeys("ajay.b.kumar@oracle.com");	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   System.out.println("Entered Opportunity and quote ");
+		   
+		  /*--------Entered Customer details-------*/
+		   
+		   driver.findElement(By.xpath(".//*[@id='tab36282454']/a/span/span/span")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(45000); 
+		 //validate
+		   
+		   driver.findElement(By.xpath(".//*[@id='_soldTo_t_email']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   driver.findElement(By.xpath(".//*[@id='_soldTo_t_email']")).clear();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   driver.findElement(By.xpath(".//*[@id='_soldTo_t_email']")).sendKeys("c9qa-gsiintg_ww@oracle.com");	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   
+		   driver.findElement(By.xpath(".//*[@id='html_call_action_validate-customer']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(30000); 
+		   
+		   System.out.println("validated customer ");
+		   WebDriverWait wait = new WebDriverWait(driver, 6000);
+	       wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(".//*[@id='html_call_action_modify-customer']"), "modify-customer"));
+		   // copy customer
+	       
+	       select = new Select(driver.findElement(By.xpath(".//*[@id='field_wrapper_1_copyToMenu_t']/div[1]/div/select")));
+		   select.selectByVisibleText("ALL");
+		   Thread.sleep(5000);
+		   driver.findElement(By.xpath(".//*[@id='html_call_action_copy']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   
+		   System.out.println("Entered customer details ");
+		   
+		   //Enter buyer and admin email address
+		   
+		   driver.findElement(By.xpath(".//*[@id='account_admin_firstName_t']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   driver.findElement(By.xpath(".//*[@id='account_admin_firstName_t']")).clear();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   driver.findElement(By.xpath(".//*[@id='account_admin_firstName_t']")).sendKeys("c9qa-gsiintg");	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   
+		   driver.findElement(By.xpath(".//*[@id='account_admin_lastName_t']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   driver.findElement(By.xpath(".//*[@id='account_admin_lastName_t']")).clear();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   driver.findElement(By.xpath(".//*[@id='account_admin_lastName_t']")).sendKeys("auto");	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   driver.findElement(By.xpath(".//*[@id='accountAdminEmailAddress_t']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000);
+		   
+		   driver.findElement(By.xpath(".//*[@id='accountAdminEmailAddress_t']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   driver.findElement(By.xpath(".//*[@id='accountAdminEmailAddress_t']")).clear();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   driver.findElement(By.xpath(".//*[@id='accountAdminEmailAddress_t']")).sendKeys("c9qa-gsiintg_ww@oracle.com");	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   
+		   driver.findElement(By.xpath(".//*[@id='buyerEmailAddress_t']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   driver.findElement(By.xpath(".//*[@id='buyerEmailAddress_t']")).clear();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   driver.findElement(By.xpath(".//*[@id='buyerEmailAddress_t']")).sendKeys("c9qa-gsiintg_ww@oracle.com");	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   
+		   
+		   System.out.println("Entered admin details ");
+		   
+		   /* Add configuration*/
+		   driver.findElement(By.xpath(".//*[@id='html_call_action_add-configuration']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   
+		   //Add products
+		   driver.findElement(By.xpath(".//*[@id='hplistitem-cloud-platform']/a")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   
+		   //Select product
+		   
+		   driver.findElement(By.xpath(".//*[@id='hpcontent-cloud-platform']/div/div[2]/div/ul/li[2]/a")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   
+		   //choose model
+		   select = new Select(driver.findElement(By.xpath(".//*[@id='pleaseSelectAPricingModel_PUBL']")));
+		   select.selectByVisibleText("Standalone (Non-Metered");
+		   Thread.sleep(5000);
+		   
+		   //choose service/product
+		   driver.findElement(By.xpath(".//*[@id='tab-nonMetered']/a/span/span/span")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   
+		   //check 
+		   driver.findElement(By.xpath(".//*[@id='oracleMessagingCloudService_PUBL_true']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   
+		   driver.findElement(By.xpath(".//*[@id='oracleMessagingCloudServiceQtyPer10ConConnections_PUBL']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   driver.findElement(By.xpath(".//*[@id='oracleMessagingCloudServiceQtyPer10ConConnections_PUBL']")).clear();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   driver.findElement(By.xpath(".//*[@id='oracleMessagingCloudServiceQtyPer10ConConnections_PUBL']")).sendKeys("10");	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(15000); 
+		   
+		   driver.findElement(By.xpath(".//*[@id='add_to_quote']")).click();	 
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+		   Thread.sleep(5000);
+		   
+		   
+		   
+    } catch(Exception err) { 
+        Assert.fail(err.getMessage());
+}
+}
+@AfterClass
+public void testCleanUp()   {
+/*----- Logout ------*/
+Utility.logOut(driver);
+  //  Quit -closes all the open window
+driver.quit();
+
+  }
+}
+        

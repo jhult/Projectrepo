@@ -1,0 +1,166 @@
+package com.qa141.db;
+/*
+ * Scenario covered by scripts: UI Feature
+
+ * Steps:
+ * 1. Go to Cloud URl
+ * 2. Login to to MyServices Page
+ * 3. Launch DB Service > Verify appropriate checkpoint on DB page.
+ * 4. Verify UI.
+ * 5. Logout.
+ */
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import com.opc.common.Browser;
+import com.opc.common.Login;
+import com.opc.util.Utility;
+import com.safc.configuration.BaseTest;
+import com.safc.configuration.BrowserType;
+import com.safc.configuration.Config;
+
+public class C9_DB_15_UI_Test extends BaseTest{
+//	WebDriver driver, driver1;
+	Select select;
+	  
+
+     @Test(dataProvider = "browserType", dataProviderClass = BrowserType.class)
+	   public void test(String browserName) {
+	 
+    	 try{  
+    	   System.out.println("Executing TestCase:-  " +  this.getClass().getSimpleName());	 
+ 		   System.out.println(browserName);
+  		   driver = Browser.browserToRun(driver1, browserName);
+  		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  				  
+  		   driver.get(Config.APP_URL); 
+ 		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       
+	       /* ---------- SignIN to MyServices  ---------- */	   
+	       Utility.myServicePage(driver);
+		   driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       driver.manage().window().maximize();
+	       Thread.sleep(20000);
+		   
+	       /* ----- Providing Login Credentials -----*/	
+	       Login.loginToMyService(driver, Config.USERID, Config.PASSWORD, Config.DOMAIN);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(10000);
+	       
+	       /*----- Verify Header on My services page  ------*/
+	       System.out.println(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText());
+           Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='pt1:header:h:bb-center']/span[1]")).getText().contains("My Services"), "My Services");
+	    			 
+           /* ----- Navigating to Service -----*/	
+  	       Utility.selectPlatformService(driver, "database");
+  	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  	       Thread.sleep(20000);
+  	       
+//  		   Assert.assertEquals("java", driver.findElement(By.xpath(".//*[@id='R436918149075931204']/ul[1]/li[4]/span")).getText());
+  	     
+  	       String DB_URL = Utility.getDBUrl(driver, By.xpath(".//*[@id='pt1:pt2:currentTabHTMLName:ot131']/span"));
+	       driver.navigate().to(DB_URL);
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(30000);
+  	    
+	       
+	    // below Utility.reLogin(driver) code changes for15.3.1 
+	  	  	Utility.reLogin(driver)  	;
+	  	  	
+  	   /*    driver.findElement(By.xpath(".//*[@id='B436917360290931198']/span")).click();
+  	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+  	       Thread.sleep(5000);
+  		*/
+  	       
+  	       /* ----- Navigating to DB Cloud Services Control Window -----*/
+  	 /*      Set allWindowHandles = driver.getWindowHandles();
+  		   int win = allWindowHandles.size();
+  	       System.out.println("no. of windows open  "  + win);
+  	       Thread.sleep(5000);
+  	       String window1 = (String) allWindowHandles.toArray()[1];
+//  	       System.out.println("windows title  "  + window1);
+  	       driver.switchTo().window(window1);	
+  	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+//  	       driver.manage().window().maximize();
+	       Thread.sleep(20000);
+//	       System.out.println("new windows title  "+ driver.getTitle());
+	   */
+	       System.out.println("Checkpoint :- " + driver.findElement(By.xpath(".//*[@id='L1126603206469918']/a[1]")).getText());
+	       Assert.assertEquals("Application Builder", driver.findElement(By.xpath(".//*[@id='L1126603206469918']/a[1]")).getText());
+          	      
+	       /*----- Launch Application Builder ------*/
+	       System.out.println("Launch Application Builder.");
+	       driver.findElement(By.xpath(".//*[@id='R30606315059404549']/div/table/tbody/tr/td[1]/a/span[2]")).click();
+	       driver.manage().timeouts().implicitlyWait(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(30000);
+ 
+  	       System.out.println(driver.findElement(By.xpath(".//*[@id='L1403321287780980']/a[1]")).getText());
+	       Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='L1403321287780980']/a[1]")).getText().contains("Application Builder"));
+	       
+  	       /*--------- click Application Builder----*/ 	
+  	       driver.findElement(By.xpath(".//*[@id='L1403321287780980']/a[2]")).click();
+  	       driver.manage().timeouts().pageLoadTimeout(Config.WAIT_FOR_SECONDS, TimeUnit.SECONDS);
+	       Thread.sleep(30000);
+	      
+	       System.out.println("Verify available tabs");  
+  	     System.out.println(driver.findElement(By.xpath(".//*[@id='SL1403321287780980']/li[2]/a")).getText()); 
+  	     Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='SL1403321287780980']/li[2]/a")).getText().contains("Database"));
+  	     System.out.println(driver.findElement(By.xpath(".//*[@id='SL1403321287780980']/li[3]/a")).getText());
+  	    Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='SL1403321287780980']/li[3]/a")).getText().contains("Websheet"));
+  	    System.out.println(driver.findElement(By.xpath(".//*[@id='SL1403321287780980']/li[4]/a")).getText());
+  	    Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='SL1403321287780980']/li[4]/a")).getText().contains("Packaged"));
+  	    
+  	    /*-----------------Verify SQL Workshop-----------*/
+  	 
+  	  System.out.println(driver.findElement(By.xpath(".//*[@id='L1437217066950029']/a[1]")).getText());
+  	  Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='L1437217066950029']/a[1]")).getText().contains("SQL Workshop"));
+	    
+  	  /*----------Verify Team Development--------*/
+     System.out.println(driver.findElement(By.xpath(".//*[@id='L171313604592527903']/a[1]")).getText());  
+  	 Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='L171313604592527903']/a[1]")).getText().contains("Team Development"));
+	    
+  	/*-----------Verify Administration--------------*/  	
+  	 System.out.println(driver.findElement(By.xpath(".//*[@id='L1363900398185313']/a[1]")).getText()); 
+  	 Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='L1363900398185313']/a[1]")).getText().contains("Administration"));
+	    
+     /*-------------verify workspace and username------------- */
+     System.out.println(driver.findElement(By.xpath(".//*[@id='page-header']/div[1]/div/a[1]")).getText()); 
+     Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='page-header']/div[1]/div/a[1]")).getText().toLowerCase().contains(Config.DOMAIN));
+         
+     System.out.println(driver.findElement(By.xpath(".//*[@id='apex-footer']/div/div[1]")).getText());
+     String Userid = Config.USERID.toUpperCase();
+     Assert.assertTrue(driver.findElement(By.xpath(".//*[@id='apex-footer']/div/div[1]")).getText().contains(Userid));
+
+     System.out.println("Test Completed:-  " +  this.getClass().getSimpleName());	
+     
+  	
+    	 } catch(Exception err) { 
+	    	 Assert.fail(err.getMessage());
+	     }
+	  }
+	   @AfterClass
+	   public void testCleanUp()   { 
+		   driver.manage().deleteAllCookies();
+			Utility.logOut(driver);
+	   //  Quit -closes all the open windows
+	     driver.quit();
+	   }
+		   
+	}	
+  	       
+  	       
+  	       
