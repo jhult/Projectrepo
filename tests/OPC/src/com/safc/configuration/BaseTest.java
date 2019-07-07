@@ -22,9 +22,18 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.ChartLocation;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 
 public class BaseTest
@@ -37,23 +46,62 @@ public class BaseTest
   public WebDriver driver1;
   String path1 = null;
   
+//builds a new report using the html template 
+  ExtentHtmlReporter htmlReporter;
+  
+  ExtentReports extent;
+  //helps to generate the logs in test report.
+  ExtentTest test;
+  
   @BeforeSuite(alwaysRun = true)
   public void setup() {
+	  
+	  htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") +"/test-output/testReport.html");
+      
+      //initialize ExtentReports and attach the HtmlReporter
+      extent = new ExtentReports();
+      extent.attachReporter(htmlReporter);
+      String OS = System.getProperty("os.name").toLowerCase();
+      //To add system or environment info by using the setSystemInfo method.
+      extent.setSystemInfo("OS", OS);
+      
+      extent.setSystemInfo("Browser", Config.BROWSER_TYPE);
+      
+      //configuration items to change the look and feel
+      //add content, manage tests etc
+      htmlReporter.config().setChartVisibilityOnOpen(true);
+      htmlReporter.config().setDocumentTitle("Extent Report Demo");
+      htmlReporter.config().setReportName("Test Report");
+      htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
+      htmlReporter.config().setTheme(Theme.STANDARD);
+      htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
     //TestRunner runner = (TestRunner)context;
     //runner.addListener(context);
   }
   
   @AfterMethod(alwaysRun = true)
   public void afterMethod(ITestResult result) throws Exception {
-    Reporter.setCurrentTestResult(result);
-    if (!result.isSuccess()) {
+	  
+	  if(result.getStatus() == ITestResult.FAILURE) {
+          test.log(Status.FAIL, MarkupHelper.createLabel(result.getName()+" FAILED ", ExtentColor.RED));
+          test.fail(result.getThrowable());
+      }
+      else if(result.getStatus() == ITestResult.SUCCESS) {
+          test.log(Status.PASS, MarkupHelper.createLabel(result.getName()+" PASSED ", ExtentColor.GREEN));
+      }
+      else {
+          test.log(Status.SKIP, MarkupHelper.createLabel(result.getName()+" SKIPPED ", ExtentColor.ORANGE));
+          test.skip(result.getThrowable());
+      }
+ //   Reporter.setCurrentTestResult(result);
+  //  if (!result.isSuccess()) {
       this.path1 = takeScreenShot(this.driver, result.getMethod());
 
       
       Reporter.log("<a href=" + this.path1 + " target='_blank' >Screenshot</a>");
       Reporter.log("<img src=\"file:///" + this.path1 + "\" width=500 height=300" + "\" alt=\"\"/><br />");
     } 
-  }
+  
 
 
 
@@ -143,6 +191,7 @@ public class BaseTest
   @AfterSuite(alwaysRun = true)
   public void tearDown() {
     System.out.println("Inside tearDown");
+    extent.flush();
     Reporter.log("<p>*-----Environment Used for Testing------ *<br>app url:-  " + Config.APP_URL + "<br>" + "userid:-   " + Config.USERID + "<br>" + "password:- " + Config.PASSWORD + "<br>" + "domain:-   " + Config.DOMAIN + "<br>" + "*--------------------------------------- *" + "</p>");
   }
 }

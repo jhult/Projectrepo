@@ -14,11 +14,7 @@
       <pathelement location="${bin}" />
   </path>
    
-    <taskdef name="testng" classname="org.testng.TestNGAntTask">
-      <classpath>
-        <pathelement location="lib/testng-6.9beta.jar"/>
-      </classpath>
-    </taskdef>
+    
  
   <target name="runTest">
  
