@@ -1,34 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="none">
+<suite name="Main Test Suite" verbose="5">
 
-  <test name="Test">
-    <classes>
-    
- 
-    <class name="com.qa132.java.C9_Java_19_Security_Test"/>
-      <class name="com.qa132.java.C9_EMGC_05_StopAplication_Test"/>
-      <class name="com.qa132.java.C9_Java_11_VerifyLinks_Test"/>
-      <class name="com.qa132.java.C9_EMGC_01_LoginLogoutOfJavaServiceConsole_Test"/>
-      <class name="com.qa132.java.C9_Java_14_ValidateError_Test"/>
-      <class name="com.qa132.java.C9_Java_13_FieldLevelCheck_Test"/>
-      <class name="com.qa132.java.C9_EMGC_02_DeployingJavaApplication_Test"/>
-      <class name="com.qa132.java.C9_EMGC_07_AccessMyServicesPage_Test"/>
-      <class name="com.qa132.java.C9_Java_17_ErrorPage_Test"/>
-      <class name="com.qa132.java.C9_EMGC_04_AccessJavaApplicationDeployed_Test"/>
-      <class name="com.qa132.java.C9_Java_15_ErrorHandling_Test"/>
-      <class name="com.qa132.java.C9_EMGC_08_DeleteApplication_Test"/>
-      <class name="com.qa132.java.C9_EMGC_06_ReDeployingJavaApplication_Test"/>
-      <class name="com.qa132.java.C9_Java_16_SearchFeature_Test"/>
-      <class name="com.qa132.java.C9_EMGC_03_StartApplication_Test"/>
-      <class name="com.qa132.java.C9_Java_12_VerifyUI_Test"/>
-      <class name="com.qa132.java.C9_Java_18_Functionality_Test"/>
-      
-          
-     
-    
-     
-   </classes>
- 
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+<parameter name="OS" value="Windows"/>
+<parameter name="browser" value="Chrome"/>
+
+  <test name="Extent Report Test">
+   <classes>
+     <class name="com.extentreport.BasicExtentReport"/>
+    </classes>
+  </test>
+</suite>

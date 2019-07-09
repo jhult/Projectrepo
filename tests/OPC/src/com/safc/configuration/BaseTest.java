@@ -47,11 +47,11 @@ public class BaseTest
   String path1 = null;
   
 //builds a new report using the html template 
-  ExtentHtmlReporter htmlReporter;
+  public ExtentHtmlReporter htmlReporter;
   
-  ExtentReports extent;
+  public ExtentReports extent;
   //helps to generate the logs in test report.
-  ExtentTest test;
+  public ExtentTest test;
   
   @BeforeSuite(alwaysRun = true)
   public void setup() {
@@ -76,7 +76,7 @@ public class BaseTest
       htmlReporter.config().setTheme(Theme.STANDARD);
       htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
     //TestRunner runner = (TestRunner)context;
-    //runner.addListener(context);
+   // runner.addListener(context);
   }
   
   @AfterMethod(alwaysRun = true)
