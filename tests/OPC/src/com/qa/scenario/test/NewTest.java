@@ -1,4 +1,4 @@
-package com.qa141.com.qa141.myaccount;
+package com.qa.scenario.test;
 
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -25,6 +25,8 @@ public class NewTest extends BaseTest {
 		try {
 			//// System.setOut(new PrintStream(new FileOutputStream(".\\log\\console.txt")));
 			//System.out.println("This is System class!!!");
+	        //test = extent.createTest(this.getClass().getSimpleName());
+	        //test=extent.getStartedReporters();
 
 			String ssopassword =DbConnection.readDataFromExcelFile(".\\data\\TestData.xls", "Sheet1", 1, 4) ;
 
